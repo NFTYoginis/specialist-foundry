@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specialist Foundry — An ICM meta-builder for operators who ship.</title>
+<meta name="description" content="A free, MIT-licensed Claude meta-builder. Brief in → folder of markdown + Pages-ready landing page out. Built by an operator, for operators. About 30 minutes per specialist.">
+<meta property="og:title" content="Specialist Foundry">
+<meta property="og:description" content="An ICM meta-builder for operators who ship multiple specialists. Brief in, folder + landing page out. MIT-licensed.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --surface: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e6e2d8;
+    --accent: #a8651a;
+    --accent-soft: #fdf0db;
+    --code-bg: #f5f1e8;
+    --code-ink: #1a1a1a;
+    --tag-bg: #ecead8;
+    --warn: #a14a2a;
+    --ok: #2f7a3c;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.04);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,0.05), 0 16px 32px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav.top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 248, 243, 0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.top .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  nav.top .brand {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  nav.top .brand span { color: var(--accent); }
+  nav.top ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  nav.top a.navlink {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 120ms ease;
+  }
+  nav.top a.navlink:hover { color: var(--ink); }
+  nav.top a.cta-nav {
+    background: var(--ink);
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  nav.top a.cta-nav:hover { background: var(--accent); color: #fff; }
+  @media (max-width: 640px) {
+    nav.top ul li.hide-sm { display: none; }
+  }
+
+  /* LAYOUT */
+  main { display: block; }
+  section.wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  section.wrap.wide { max-width: 1080px; }
+
+  /* HERO */
+  section.hero {
+    padding: 88px 24px 64px;
+    text-align: center;
+  }
+  section.hero .tagline {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  section.hero h1 {
+    font-size: 50px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    margin: 0 auto 24px;
+    max-width: 760px;
+    font-weight: 700;
+  }
+  section.hero p.sub {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 auto 36px;
+    max-width: 640px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  a.btn {
+    display: inline-block;
+    padding: 13px 26px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.005em;
+    transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  }
+  a.btn.primary { background: var(--ink); color: #fff; }
+  a.btn.primary:hover { background: var(--accent); }
+  a.btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+  }
+  a.btn.secondary:hover { border-color: var(--ink); }
+  a.btn:active { transform: translateY(1px); }
+  @media (max-width: 640px) {
+    section.hero { padding: 56px 24px 48px; }
+    section.hero h1 { font-size: 34px; }
+    section.hero p.sub { font-size: 17px; }
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    margin: 88px 0 32px;
+    text-align: center;
+  }
+  .section-header .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .section-header h2 {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .section-header p.lede {
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0 auto;
+    max-width: 620px;
+    line-height: 1.55;
+  }
+  @media (max-width: 640px) {
+    .section-header { margin: 64px 0 28px; }
+    .section-header h2 { font-size: 26px; }
+  }
+
+  /* STAGES (5-column) */
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 22px 18px;
+    box-shadow: var(--shadow);
+  }
+  .stage .stage-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .stage h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .stage p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  @media (max-width: 900px) {
+    .stages { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stages { grid-template-columns: 1fr; }
+  }
+
+  /* FLAIR AXES (3-column) */
+  .flair {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .flair-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 26px 24px;
+    box-shadow: var(--shadow);
+  }
+  .flair-card .axis-num {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .flair-card h3 {
+    font-size: 19px;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .flair-card p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .flair-card p.note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) {
+    .flair { grid-template-columns: 1fr; }
+  }
+
+  /* COMPARISON TABLE */
+  table.comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  table.comparison th, table.comparison td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    font-size: 14px;
+  }
+  table.comparison tr:last-child td { border-bottom: 0; }
+  table.comparison th {
+    background: var(--code-bg);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  table.comparison td:first-child { font-weight: 700; width: 22%; }
+  table.comparison .yes { color: var(--ok); font-weight: 700; }
+  table.comparison .no { color: var(--muted); }
+  table.comparison .us { background: var(--accent-soft); }
+
+  /* SAMPLE DISPATCH */
+  .sample {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 28px 30px;
+    box-shadow: var(--shadow);
+    margin-top: 32px;
+  }
+  .sample .sample-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sample .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .sample .user-line {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 0 0 18px;
+    font-style: italic;
+    color: var(--ink);
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .sample .stage-block {
+    margin: 18px 0;
+  }
+  .sample .stage-block .stage-tag {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .sample .stage-block p {
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .sample .stage-block ul {
+    margin: 6px 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .sample code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* ILLUSTRATIVE BLOCKS */
+  .illustrative {
+    background: var(--accent-soft);
+    border: 1px dashed var(--accent);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .illustrative h3 {
+    font-size: 14px;
+    margin: 0 0 10px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .illustrative p { margin: 0 0 8px; font-size: 15px; line-height: 1.55; }
+  .illustrative p:last-child { margin-bottom: 0; }
+  .illustrative .attribution {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    font-style: normal;
+  }
+
+  /* SETUP STEPS */
+  .steps {
+    margin-top: 32px;
+    counter-reset: step-counter;
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 22px 24px 22px 64px;
+    margin-bottom: 14px;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .step::before {
+    counter-increment: step-counter;
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 22px;
+    width: 30px;
+    height: 30px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .step h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
+  }
+  .step p {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .step code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .step pre {
+    background: var(--code-bg);
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin: 10px 0 0;
+    overflow-x: auto;
+    color: var(--ink);
+  }
+
+  /* FAQ */
+  details.faq {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  details.faq summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    list-style: none;
+    color: var(--ink);
+    position: relative;
+    padding-right: 30px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: 400;
+    color: var(--accent);
+    font-size: 22px;
+    line-height: 1;
+  }
+  details.faq[open] summary::after { content: "−"; }
+  details.faq p, details.faq ul {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  details.faq ul { padding-left: 22px; }
+  details.faq code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 96px;
+    padding: 36px 24px 56px;
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  footer .foot-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+  footer a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  footer .license { font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Specialist <span>Foundry</span></a>
+    <ul>
+      <li class="hide-sm"><a class="navlink" href="#stages">5 stages</a></li>
+      <li class="hide-sm"><a class="navlink" href="#flair">Why us</a></li>
+      <li class="hide-sm"><a class="navlink" href="#sample">Sample</a></li>
+      <li class="hide-sm"><a class="navlink" href="#setup">Setup</a></li>
+      <li class="hide-sm"><a class="navlink" href="#faq">FAQ</a></li>
+      <li><a class="cta-nav" href="https://github.com/NFTYoginis/specialist-foundry">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="tagline">An ICM meta-builder for operators who ship</div>
+    <h1>Brief in. Folder of markdown + Pages-ready landing page out.</h1>
+    <p class="sub">A free, MIT-licensed Claude meta-builder for solo founders, agencies, and internal-tools people who ship multiple specialists across domains. About 30 minutes per specialist, with an audit trail that survives the chat.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#setup">Set it up (5 minutes)</a>
+      <a class="btn secondary" href="#sample">See a dispatch</a>
+    </div>
+  </section>
+
+  <section class="wrap wide" id="stages">
+    <div class="section-header">
+      <div class="eyebrow">The five stages</div>
+      <h2>Every dispatch runs through the same named stages.</h2>
+      <p class="lede">Lifted from <a href="https://github.com/astetic-dev/specialist-builder" style="color: var(--accent); border-bottom: 1px solid var(--rule); text-decoration: none;">Arjen's Specialist Builder</a> — the workflow naming is good, no reason to reinvent it. Brief-file dispatch, durable artifacts, and Pages-by-default output are ours.</p>
+    </div>
+
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-num">Stage 1</div>
+        <h3>CALIBRATE</h3>
+        <p>Reads brief. Surfaces preconditions as questions. <strong>Mandatory, not skippable.</strong> STOPS until operator answers.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage 2</div>
+        <h3>PLAN</h3>
+        <p>Surfaces closest analog, folder tree, key patterns. You sign off or redirect. No files written yet.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage 3</div>
+        <h3>BUILD</h3>
+        <p>Produces files. Cites source repos and research reports. Ships <code>docs/index.html</code>.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage 4</div>
+        <h3>VERIFY</h3>
+        <p>Runs 13-row ICM checklist. Pages self-contained discipline check. Reports pass/fail per row.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-num">Stage 5</div>
+        <h3>HAND OFF</h3>
+        <p>Outputs <code>gh</code> CLI deployment commands. Updates STATUS. Appends upstream breadcrumb. Worker doesn't deploy by default.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap wide" id="flair">
+    <div class="section-header">
+      <div class="eyebrow">What makes this not a clone</div>
+      <h2>Three flair axes Arjen and Virgilio don't have.</h2>
+      <p class="lede">Specialist Foundry sits in the empty slot between Arjen's developer-grade chat-prompt and Virgilio's non-technical wizard. Operator-grade buyer; durable artifacts; integrity as a feature.</p>
+    </div>
+
+    <div class="flair">
+      <div class="flair-card">
+        <div class="axis-num">Axis 1</div>
+        <h3>Audit-trail dispatch</h3>
+        <p>Every build has a brief file at <code>briefs/&lt;date&gt;-&lt;slug&gt;.md</code>, optional question files surfacing preconditions, and a STATUS update afterward.</p>
+        <p class="note">Read a year-old build's brief + question file + STATUS and reconstruct what was decided and why. Chat-prompt dispatch is ephemeral; wizard dispatch is ephemeral. Foundry's is durable.</p>
+      </div>
+      <div class="flair-card">
+        <div class="axis-num">Axis 2</div>
+        <h3>Pages-by-default</h3>
+        <p>Every Foundry-built specialist ships with a self-contained <code>docs/index.html</code> — inline CSS, no external dependencies, ~30KB.</p>
+        <p class="note">Push the repo + enable Pages from <code>/docs</code> → public URL at <code>&lt;username&gt;.github.io/&lt;slug&gt;/</code> in 60 seconds. Neither cousin produces a landing page.</p>
+      </div>
+      <div class="flair-card">
+        <div class="axis-num">Axis 3</div>
+        <h3>Integrity-guardrails</h3>
+        <p>Refuses to manufacture unlabeled testimonials, refuses high-harm domains (medical/legal-licensed/suicide-intervention), enforces empty-region rules.</p>
+        <p class="note">If you want fictional testimonials before cold-test, Foundry insists on inline <code>(illustrative composite, fictional)</code> labels. Tested on a bereavement-product build where this actually mattered.</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="eyebrow">vs. the cousins</div>
+      <h2>What you're actually trading off.</h2>
+      <p class="lede">Arjen and Virgilio are excellent; they serve different buyers. Pick the one that fits.</p>
+    </div>
+
+    <table class="comparison">
+      <thead>
+        <tr>
+          <th>Axis</th>
+          <th class="us">Specialist Foundry</th>
+          <th>Arjen's Specialist Builder</th>
+          <th>Virgilio's ICM Workspace Builder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dispatch</td>
+          <td class="us">Brief file in <code>briefs/</code></td>
+          <td>Single-line chat prompt</td>
+          <td>Wizard UX (archetype + guided questions)</td>
+        </tr>
+        <tr>
+          <td>Output medium</td>
+          <td class="us">Pre-built folder on disk</td>
+          <td>Inline markdown code blocks</td>
+          <td>Downloadable .zip</td>
+        </tr>
+        <tr>
+          <td>Pages landing page</td>
+          <td class="us"><span class="yes">✓</span> Self-contained <code>docs/index.html</code></td>
+          <td><span class="no">—</span></td>
+          <td><span class="no">—</span></td>
+        </tr>
+        <tr>
+          <td>Audit trail</td>
+          <td class="us"><span class="yes">✓</span> Brief + question files + STATUS</td>
+          <td><span class="no">chat-ephemeral</span></td>
+          <td><span class="no">wizard-ephemeral</span></td>
+        </tr>
+        <tr>
+          <td>Integrity-guardrails</td>
+          <td class="us"><span class="yes">✓</span> Three explicit gates</td>
+          <td>High-harm-domain only</td>
+          <td>Archetype-gated</td>
+        </tr>
+        <tr>
+          <td>Workflow stages</td>
+          <td class="us">5 named (CALIBRATE → HAND OFF)</td>
+          <td>5 named (same names — Foundry lifted)</td>
+          <td>Archetype-driven</td>
+        </tr>
+        <tr>
+          <td>Time-to-ship target</td>
+          <td class="us">~30 min, brief-depth driven</td>
+          <td>10 min, one chat</td>
+          <td>Interactive, likely similar</td>
+        </tr>
+        <tr>
+          <td>Buyer fit</td>
+          <td class="us">Operator-grade (solo founder / agency / internal-tools)</td>
+          <td>Developer comfortable with folders</td>
+          <td>Non-technical archetype-picker</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="wrap" id="sample">
+    <div class="section-header">
+      <div class="eyebrow">Sample dispatch</div>
+      <h2>What a real first-cousin build looked like.</h2>
+      <p class="lede">The Online Funeral Family Compass (<a href="https://github.com/NFTYoginis/online-funeral-family-compass" style="color: var(--accent); border-bottom: 1px solid var(--rule); text-decoration: none;">repo</a> · <a href="https://nftyoginis.github.io/online-funeral-family-compass/" style="color: var(--accent); border-bottom: 1px solid var(--rule); text-decoration: none;">live</a>) was built on the architecture this Foundry codifies. Below is the abbreviated dispatch trace.</p>
+    </div>
+
+    <div class="sample">
+      <div class="sample-head">
+        <span class="label">Operator dispatch</span>
+      </div>
+      <div class="user-line">
+        Read the brief at briefs/2026-05-12-online-funeral-industry-specialist.md and execute.
+      </div>
+
+      <div class="stage-block">
+        <span class="stage-tag">CALIBRATE</span>
+        <p>Brief defers three preconditions to operator: buyer (bereaved family / platform staff / death-tech founder), domain layers (which of 8 candidates + geographic scope), grading bar (structurally-valid / domain-accurate / usable).</p>
+        <p>Filing <code>briefs/questions/2026-05-12-online-funeral-industry-specialist-question.md</code> with all three in one round-trip. <strong>STOPPING.</strong></p>
+      </div>
+
+      <div class="stage-block">
+        <span class="stage-tag">PLAN</span>
+        <p>Operator answered: (a) bereaved family · 4–6 of 8 layers, US-seeded with hub-extensibility · all 3 grading bars.</p>
+        <p>Closest analog: Grief Admin Compass (4-column triage shape lifted). Slug: <code>online-funeral-family-compass</code>. 6 of 8 layers picked, US-only with <code>reference/_template-country/</code> scaffold for extension. Empty-country handler lifted from Realtor Copilot v2's empty-region rule. 5 refusal gates drafted. Folder tree surfaced; operator confirmed.</p>
+      </div>
+
+      <div class="stage-block">
+        <span class="stage-tag">BUILD</span>
+        <p>14 files produced under <code>builds/online-funeral-family-compass/</code>. WebFetch budget: 9 calls (3 succeeded — Funeral Consumers Alliance, USA.gov death certificate, Grief Admin Compass examples via raw GitHub; 6 failed 403/404 — fallback to stable public-knowledge URLs cited inline).</p>
+      </div>
+
+      <div class="stage-block">
+        <span class="stage-tag">VERIFY</span>
+        <p>13/13 ICM checklist passed. Pages self-contained check: <code>grep</code> returns only repo URL + issues URL. No external asset fetches.</p>
+      </div>
+
+      <div class="stage-block">
+        <span class="stage-tag">HAND OFF</span>
+        <p>Deployment commands output. Operator authorized push mid-session (per-build override). Pushed to <code>github.com/NFTYoginis/online-funeral-family-compass</code>; Pages enabled from <code>/docs</code>; live at <code>nftyoginis.github.io/online-funeral-family-compass/</code> within 60 seconds. STATUS.md updated. HQ breadcrumb appended.</p>
+        <ul>
+          <li>Mid-session operator override #1 (deploy authorized): logged.</li>
+          <li>Mid-session operator override #2 (sales-page expansion with illustrative testimonials): logged. Integrity-guardrail held — every fictional name labeled <code>(illustrative composite, fictional)</code> inline.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Who'd use this</div>
+      <h2>Illustrative scenarios from the design phase.</h2>
+      <p class="lede">Specialist Foundry is pre-launch beyond its first cousin (the funeral compass). Scenarios below are <strong>illustrative composites drafted during the design phase</strong> — they describe the kind of operator who'd reach for Foundry over Arjen's or Virgilio's. Names and details are fictional. Real testimonials will replace this block after cold-test with external operators.</p>
+    </div>
+
+    <div class="illustrative">
+      <h3>Illustrative — Solo founder shipping a B2B SaaS toolkit</h3>
+      <p>"I ship 3–4 new Claude specialists per quarter for different product areas — onboarding, churn-analysis, sales-call review, feature-discovery. I need an audit trail per specialist because I forget what I was thinking three months ago, and I need Pages-by-default because my marketing site links to each one. Arjen's chat-prompt was too ephemeral; Virgilio's wizard didn't fit my workflow. Foundry's brief-file dispatch is what I actually want."</p>
+      <p class="attribution">— Adrian R., solo founder, B2B SaaS <em>(illustrative composite, fictional)</em></p>
+    </div>
+
+    <div class="illustrative">
+      <h3>Illustrative — Agency partner running specialist builds for clients</h3>
+      <p>"My agency ships ~12 specialists a year across client domains. The integrity-guardrails matter because half our clients want to over-promise on testimonials — Foundry's hard "no" on unlabeled fake proof is what I needed in writing. The brief-file pattern also gives me something to put in front of the client at start, instead of "trust me on the scope.""</p>
+      <p class="attribution">— Priya N., agency partner, design/strategy consultancy <em>(illustrative composite, fictional)</em></p>
+    </div>
+
+    <div class="illustrative">
+      <h3>Illustrative — Internal-tools developer at a 60-person startup</h3>
+      <p>"I build 1–2 internal specialists per month for different teams (sales-ops, customer-success, product). The 5-stage workflow is overkill for some of them, but the CALIBRATE-is-mandatory rule has saved me from at least three rebuilds caused by missing scope. The Pages output also lets non-technical PMs review specialists before launch — they can just open a URL."</p>
+      <p class="attribution">— Marcus L., internal-tools lead, mid-stage startup <em>(illustrative composite, fictional)</em></p>
+    </div>
+
+    <p style="text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted);">
+      <em>If you're an operator who'd use this — or already does — please <a href="https://github.com/NFTYoginis/specialist-foundry/issues" style="color: var(--accent); border-bottom: 1px solid var(--rule);">open an issue on GitHub</a> with your real workflow. Real testimonials replace this block once we have them.</em>
+    </p>
+  </section>
+
+  <section class="wrap" id="setup">
+    <div class="section-header">
+      <div class="eyebrow">Setup</div>
+      <h2>About 5 minutes, one time.</h2>
+      <p class="lede">If you can use Claude in a web browser, you can set this up. No install, no API key, no monthly cost beyond your Claude subscription.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <h3>Clone or download the repo</h3>
+        <p>From GitHub: <code>git clone</code> the repo, or click the green Code button and download the ZIP. You only need the markdown files and the reference folder.</p>
+        <pre>git clone https://github.com/NFTYoginis/specialist-foundry.git</pre>
+      </div>
+      <div class="step">
+        <h3>Create a new Claude Project</h3>
+        <p>Go to <code>claude.ai/projects</code>, click New Project, name it "Specialist Foundry."</p>
+      </div>
+      <div class="step">
+        <h3>Upload as Project Knowledge</h3>
+        <p>Upload <code>identity.md</code>, <code>rules.md</code>, <code>examples.md</code>, and all files under <code>reference/</code>. Drag and drop works.</p>
+      </div>
+      <div class="step">
+        <h3>Set up your working folder</h3>
+        <p>Create a working folder somewhere on disk with two sub-folders: <code>briefs/</code> and <code>builds/</code>. Foundry writes to both.</p>
+        <pre>mkdir -p ~/my-specialists/briefs ~/my-specialists/builds</pre>
+      </div>
+      <div class="step">
+        <h3>Write your first brief and dispatch</h3>
+        <p>Write a brief into <code>briefs/&lt;date&gt;-&lt;slug&gt;.md</code> describing the specialist you want built (target buyer, domain, output shape, scope limits). The brief template is in this repo's <code>examples.md</code>.</p>
+        <p>Then paste this verbatim into your Claude project chat:</p>
+        <pre>Read the brief at briefs/&lt;filename&gt; and dispatch through the five Foundry stages.</pre>
+        <p>Foundry runs CALIBRATE → PLAN → BUILD → VERIFY → HAND OFF.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <div class="section-header">
+      <div class="eyebrow">FAQ</div>
+      <h2>Common questions.</h2>
+    </div>
+
+    <details class="faq">
+      <summary>Why brief-file dispatch instead of a chat prompt?</summary>
+      <p>The brief file is the audit trail. Without it, your dispatch is ephemeral — when the chat closes, you can't reconstruct what you decided or why. A year from now, you can read the brief + the question file + the STATUS line and rebuild context in 90 seconds. This matters when you ship more than one specialist or work on a team.</p>
+      <p>Arjen's Specialist Builder uses a chat prompt and is 10 minutes per specialist — faster, less ceremony, ideal for one-off builds by a developer comfortable with the inline-markdown output. Foundry is slower (~30 min) and adds the audit-trail overhead deliberately.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What's the actual difference from Arjen's Specialist Builder?</summary>
+      <ul>
+        <li><strong>Dispatch:</strong> brief file (durable) vs. chat prompt (ephemeral)</li>
+        <li><strong>Output:</strong> pre-built folder on disk (you don't copy-paste) vs. inline markdown code blocks</li>
+        <li><strong>Pages-ready landing page:</strong> always shipped (<code>docs/index.html</code>) vs. not included</li>
+        <li><strong>Integrity-guardrails:</strong> three explicit gates (launch-layer, high-harm-domain, unlabeled-fake-proof) vs. high-harm-domain only</li>
+        <li><strong>Workflow stages:</strong> same 5 names (lifted from Arjen — credit given in this repo's README and acknowledgments)</li>
+      </ul>
+      <p>If you're a developer who wants one specialist fast and you're comfortable copy-pasting markdown, Arjen's is the better fit. If you ship multiple specialists, want Pages-by-default, and care about the audit trail, Foundry's is.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What's the actual difference from Virgilio's ICM Workspace Builder?</summary>
+      <ul>
+        <li><strong>UX:</strong> brief file (technical) vs. wizard with archetype selection (friendly for non-technical)</li>
+        <li><strong>Architecture layers:</strong> ICM-canonical 5 + Pages-by-default vs. 6-layer system (Virgilio's adds CLAUDE.md, CONTEXT.md, stage contracts, <code>_config/</code>, <code>output/</code>, optional skill-starters)</li>
+        <li><strong>Output medium:</strong> pre-built folder vs. downloadable .zip</li>
+        <li><strong>Buyer:</strong> operator-grade (technically comfortable) vs. non-technical archetype-picker</li>
+      </ul>
+      <p>Virgilio's architecture is materially richer than Foundry's. If you want CONTEXT.md + stage contracts in your output, Virgilio's is the better fit. Foundry kept the ICM-canonical 5 deliberately to stay close to the source repos and minimize per-build setup time.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Can I fork this and use a different workflow / different gates?</summary>
+      <p>Yes — MIT-licensed. The architecture is meant to fork. If your fork makes substantial workflow or gate changes, please rename it ("Specialist Foundry — Acme Edition" / "Compliance Foundry" / whatever) so the upstream lineage stays clear.</p>
+      <p>If you build something that should go upstream, file a PR. The two refusal gates that <strong>don't</strong> bend are unlabeled-fake-proof and high-harm-domain — these are integrity gates, not features. Forks that strip them lose the lineage; that's your call, but I won't merge it back.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What if my brief is for a high-harm domain (medical, legal, suicide)?</summary>
+      <p>Foundry refuses at CALIBRATE and points you to certified professionals:</p>
+      <ul>
+        <li>Medical diagnosis → licensed physicians; for second opinions, Cleveland Clinic Express Care, Teladoc, or your insurer's nurse line</li>
+        <li>Legal advice in licensed jurisdictions → an attorney licensed in the relevant state/country; your state or country bar association has a referral line</li>
+        <li>Suicide intervention → 988 Suicide and Crisis Lifeline (US, call or text 988); for other countries, International Association for Suicide Prevention</li>
+      </ul>
+      <p>Adjacent domains (medical TRIAGE for non-emergencies, legal admin, grief admin) are in scope — see the Online Funeral Family Compass for the bereavement adjacent case.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Do I have to use GitHub Pages?</summary>
+      <p>No — the <code>docs/index.html</code> file is self-contained and works via <code>file://</code> protocol. You can email it, archive it, host it on Netlify, or just keep it for local preview. But Pages is the path of least resistance: push the repo, enable Pages, public URL in 60 seconds.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Why insist on labeled-illustrative testimonials? Can't I just use real ones?</summary>
+      <p>Yes, if they're real. The refusal is on <strong>unlabeled fictional ones</strong>. Real testimonials with provenance are always preferred — operator supplies them, attributes accurately, the person has consented. Foundry doesn't second-guess provenance.</p>
+      <p>The labeled-illustrative discipline exists for the pre-launch period, when you don't have real testimonials yet and you want the landing page to communicate scenarios anyway. Inline labels keep that honest.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What does it cost?</summary>
+      <p>The Foundry itself is free, MIT-licensed. The cost is your Claude subscription (free tier exists; paid tier varies). There is no third-party SaaS, no API key, no recurring fee added by this Foundry. Each Foundry-built specialist is also MIT-licensed unless your brief specifies otherwise.</p>
+    </details>
+
+    <details class="faq">
+      <summary>How is this related to Realtor Copilot v2 and the Grief Admin Compass?</summary>
+      <p>Both of those are <strong>built specialists</strong>, not meta-builders. They are example outputs of the architecture Foundry codifies. Realtor Copilot v2's empty-region rule and Pages-ready landing page pattern were lifted into Foundry's defaults. Grief Admin Compass's 4-column triage shape and admin-first voice informed how the first Foundry build (the Online Funeral Family Compass) was structured. Acknowledgment to both at the bottom of this Foundry's README.</p>
+    </details>
+
+    <details class="faq">
+      <summary>I built something with Specialist Foundry. How do I list it back?</summary>
+      <p><a href="https://github.com/NFTYoginis/specialist-foundry/issues" style="color: var(--accent); border-bottom: 1px solid var(--rule);">Open an issue</a> with the repo URL + a one-line description. Specialists built with Foundry get listed in this repo's README. The cousin lineage matters and we keep it visible.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <strong>Specialist Foundry</strong> — v1.0, 2026-05-12<br>
+      <span class="license">MIT-licensed. Free to use, modify, distribute. Forks are welcome.</span>
+    </div>
+    <div>
+      <a href="https://github.com/NFTYoginis/specialist-foundry">View on GitHub</a> &nbsp;·&nbsp;
+      <a href="https://github.com/NFTYoginis/online-funeral-family-compass">First cousin</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
