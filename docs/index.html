@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Specialist Foundry — An ICM meta-builder for operators who ship.</title>
-<meta name="description" content="A free, MIT-licensed Claude meta-builder. Brief in → folder of markdown + Pages-ready landing page out. Built by an operator, for operators. About 30 minutes per specialist.">
-<meta property="og:title" content="Specialist Foundry">
-<meta property="og:description" content="An ICM meta-builder for operators who ship multiple specialists. Brief in, folder + landing page out. MIT-licensed.">
+<title>Gabe — Your AI Specialist. Landing pages for your AI tools.</title>
+<meta name="description" content="A free, MIT-licensed Claude tool that turns one brief into an AI specialist + its own self-contained landing page. Distinct visual identity for every build. About 30 minutes from brief to live URL.">
+<meta property="og:title" content="Gabe — Your AI Specialist">
+<meta property="og:description" content="Landing pages for your AI tools. Brief in, specialist + distinct landing page out. MIT-licensed.">
 <meta property="og:type" content="website">
 <style>
   :root {
-    /* Operator-tooling aesthetic: dark slate, warm amber, monospace section labels, sharp corners. */
     --bg: #0f1419;
     --surface: #1a1f26;
     --surface-2: #21262e;
@@ -250,7 +249,152 @@
     .section-header h2 { font-size: 24px; }
   }
 
-  /* STAGES (5-column row) */
+  /* PAGE PREVIEW GALLERY — what the tool produces */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .preview-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .preview-card .preview-frame {
+    padding: 28px 26px 22px;
+    min-height: 200px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  .preview-card .preview-frame .frame-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .preview-card .preview-frame .frame-headline {
+    font-size: 21px;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .preview-card .preview-frame .frame-sub {
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  /* Funeral-compass preview (bereavement-grade) */
+  .preview-card.bereavement .preview-frame {
+    background: #fdfaf6;
+  }
+  .preview-card.bereavement .frame-eyebrow {
+    color: #7a7068;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+  }
+  .preview-card.bereavement .frame-headline {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    color: #2a2520;
+  }
+  .preview-card.bereavement .frame-sub {
+    color: #4a443c;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .preview-card.bereavement .palette-strip {
+    display: flex;
+    height: 6px;
+  }
+  .preview-card.bereavement .palette-strip span:nth-child(1) { background: #fdfaf6; flex: 3; }
+  .preview-card.bereavement .palette-strip span:nth-child(2) { background: #6f8a6a; flex: 1; }
+  .preview-card.bereavement .palette-strip span:nth-child(3) { background: #2a2520; flex: 1; }
+  .preview-card.bereavement .palette-strip span:nth-child(4) { background: #ede6dc; flex: 1; }
+
+  /* Operator-tooling preview (this page) */
+  .preview-card.operator .preview-frame {
+    background: var(--bg);
+  }
+  .preview-card.operator .frame-eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .preview-card.operator .frame-eyebrow::before { content: "// "; color: var(--muted); }
+  .preview-card.operator .frame-headline {
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .preview-card.operator .frame-sub {
+    color: var(--ink-dim);
+  }
+  .preview-card.operator .palette-strip {
+    display: flex;
+    height: 6px;
+  }
+  .preview-card.operator .palette-strip span:nth-child(1) { background: var(--bg); flex: 3; }
+  .preview-card.operator .palette-strip span:nth-child(2) { background: var(--accent); flex: 1; }
+  .preview-card.operator .palette-strip span:nth-child(3) { background: var(--ink); flex: 1; }
+  .preview-card.operator .palette-strip span:nth-child(4) { background: var(--rule); flex: 1; }
+
+  .preview-card .preview-meta {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .preview-card .preview-meta .aesthetic-label {
+    color: var(--muted);
+  }
+  .preview-card .preview-meta a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-line);
+    padding-bottom: 2px;
+  }
+  .preview-card .preview-meta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (max-width: 800px) {
+    .gallery { grid-template-columns: 1fr; }
+  }
+
+  /* AESTHETIC FAMILIES LIST */
+  .aesthetic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin-top: 22px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .aesthetic-cell {
+    background: var(--surface);
+    padding: 20px 22px;
+  }
+  .aesthetic-cell .name {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .aesthetic-cell .desc {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    line-height: 1.55;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .aesthetic-grid { grid-template-columns: 1fr; }
+  }
+
+  /* STAGES */
   .stages {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -292,7 +436,7 @@
     .stages { grid-template-columns: 1fr; }
   }
 
-  /* FLAIR — 3-column with strong dividers */
+  /* FLAIR — 3-column */
   .flair {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -341,47 +485,6 @@
     .flair { grid-template-columns: 1fr; }
   }
 
-  /* COMPARISON TABLE */
-  table.comparison {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 28px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 13px;
-  }
-  table.comparison th, table.comparison td {
-    text-align: left;
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: top;
-  }
-  table.comparison tr:last-child td { border-bottom: 0; }
-  table.comparison th {
-    background: var(--surface-2);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    font-weight: 700;
-  }
-  table.comparison td:first-child {
-    color: var(--ink);
-    width: 22%;
-  }
-  table.comparison td:not(:first-child) { color: var(--ink-dim); }
-  table.comparison .yes { color: var(--ok); font-weight: 700; }
-  table.comparison .no { color: var(--muted); }
-  table.comparison .us { background: var(--accent-soft); color: var(--ink); }
-  table.comparison td code, table.comparison th code {
-    background: var(--code-bg);
-    padding: 1px 5px;
-    border-radius: 2px;
-    color: var(--accent);
-    font-size: 12px;
-  }
-
   /* SAMPLE DISPATCH — terminal-styled transcript */
   .sample {
     background: var(--surface);
@@ -410,7 +513,7 @@
     color: var(--ink);
     font-size: 13px;
   }
-  .sample .user-line::before { content: "operator > "; color: var(--accent); font-weight: 700; }
+  .sample .user-line::before { content: "you > "; color: var(--accent); font-weight: 700; }
   .sample .stage-block { margin: 22px 0; }
   .sample .stage-block .stage-tag {
     display: inline-block;
@@ -583,10 +686,10 @@
 
 <nav class="top">
   <div class="nav-inner">
-    <a class="brand" href="#top">specialist-<span>foundry</span></a>
+    <a class="brand" href="#top">gabe<span> — your_ai_specialist</span></a>
     <ul>
-      <li class="hide-sm"><a class="navlink" href="#stages">5_stages</a></li>
-      <li class="hide-sm"><a class="navlink" href="#flair">why_us</a></li>
+      <li class="hide-sm"><a class="navlink" href="#produces">produces</a></li>
+      <li class="hide-sm"><a class="navlink" href="#stages">how_it_works</a></li>
       <li class="hide-sm"><a class="navlink" href="#sample">sample</a></li>
       <li class="hide-sm"><a class="navlink" href="#setup">setup</a></li>
       <li class="hide-sm"><a class="navlink" href="#faq">faq</a></li>
@@ -603,61 +706,122 @@
         <span class="dot r"></span>
         <span class="dot y"></span>
         <span class="dot g"></span>
-        <span class="title">~/specialist-foundry — claude project</span>
+        <span class="title">~/your-ai-specialist — claude project</span>
       </div>
       <div class="terminal-body">
-        <div class="tagline">an icm meta-builder for operators who ship</div>
-        <h1>Brief in. Folder of markdown + Pages-ready landing page out.</h1>
-        <p class="sub">A free, MIT-licensed Claude meta-builder for solo founders, agencies, and internal-tools people who ship multiple specialists across domains. About 30 minutes per specialist, with an audit trail that survives the chat.</p>
+        <div class="tagline">landing pages for your ai tools</div>
+        <h1>Distinct landing page for every AI specialist you ship.</h1>
+        <p class="sub">Brief in. AI specialist + its own self-contained landing page out. Each one gets its own visual identity — no template clones. About 30 minutes from brief to live URL. MIT-licensed, free, no install.</p>
         <div class="cta-row">
-          <a class="btn primary" href="#setup">$ set_up</a>
-          <a class="btn secondary" href="#sample">$ see_dispatch</a>
+          <a class="btn primary" href="#produces">$ see_what_it_produces</a>
+          <a class="btn secondary" href="#setup">$ set_up</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap wide" id="produces">
+    <div class="section-header">
+      <span class="eyebrow">what it produces</span>
+      <h2>Each AI specialist ships with its own landing page.</h2>
+      <p class="lede">Every build gets a self-contained <code>docs/index.html</code> — inline CSS, no external dependencies, distinct visual identity tuned to the specialist's domain. Push the repo, enable Pages from <code>/docs</code>, public URL in 60 seconds.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="preview-card bereavement">
+        <div class="preview-frame">
+          <div class="frame-eyebrow">A CALM, PRIORITIZED LIST</div>
+          <div class="frame-headline">A calm, prioritized list of what to do — today, this week, this month, and not yet.</div>
+          <p class="frame-sub">A free, MIT-licensed Claude specialist that sorts the administrative load in the week after a death.</p>
+        </div>
+        <div class="palette-strip"><span></span><span></span><span></span><span></span></div>
+        <div class="preview-meta">
+          <span class="aesthetic-label">bereavement_grade</span>
+          <a href="https://nftyoginis.github.io/online-funeral-family-compass/">view_live →</a>
+        </div>
+      </div>
+
+      <div class="preview-card operator">
+        <div class="preview-frame">
+          <div class="frame-eyebrow">landing pages for your ai tools</div>
+          <div class="frame-headline">Distinct landing page for every AI specialist you ship.</div>
+          <p class="frame-sub">Brief in. AI specialist + its own self-contained landing page out. About 30 minutes from brief to live URL.</p>
+        </div>
+        <div class="palette-strip"><span></span><span></span><span></span><span></span></div>
+        <div class="preview-meta">
+          <span class="aesthetic-label">operator_tooling</span>
+          <a href="#top">you_are_here →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 64px;">
+      <span class="eyebrow">aesthetic families</span>
+      <h2>Distinct identity per build is refusal-grade discipline.</h2>
+      <p class="lede">A built specialist's landing page that's visually indistinguishable from the previous build fails verification and gets rebuilt. These are the aesthetic families ready to ship at PLAN stage — operator picks, or proposes a new one.</p>
+    </div>
+
+    <div class="aesthetic-grid">
+      <div class="aesthetic-cell">
+        <div class="name">bereavement_grade</div>
+        <p class="desc">Warm white background, muted sage accent, Georgia serif headlines, spacious 1.7 line-height, hairline-only dividers. For grief, hospice, palliative care, end-of-life admin.</p>
+      </div>
+      <div class="aesthetic-cell">
+        <div class="name">operator_tooling</div>
+        <p class="desc">Dark slate background, warm amber accent, monospace section labels, terminal-styled hero, sharp 4px corners. For developer tools, internal trades, technical specialists.</p>
+      </div>
+      <div class="aesthetic-cell">
+        <div class="name">financial_reserved</div>
+        <p class="desc">Cream + navy with restrained accent use, more rule lines than fills, all-sans hierarchy. For financial admin, regulatory navigation, compliance.</p>
+      </div>
+      <div class="aesthetic-cell">
+        <div class="name">creative_warm</div>
+        <p class="desc">Cream + warm amber, generous headlines, rounded soft cards, backdrop-blur nav. For creative, education, hospitality, lifestyle specialists.</p>
       </div>
     </div>
   </section>
 
   <section class="wrap wide" id="stages">
     <div class="section-header">
-      <span class="eyebrow">the five stages</span>
-      <h2>Every dispatch runs through the same named stages.</h2>
-      <p class="lede">Lifted from <a href="https://github.com/astetic-dev/specialist-builder">Arjen's Specialist Builder</a> — the workflow naming is good, no reason to reinvent it. Brief-file dispatch, durable artifacts, and Pages-by-default output are ours.</p>
+      <span class="eyebrow">how it works</span>
+      <h2>Every build runs through five named stages.</h2>
+      <p class="lede">Brief-file dispatch into a Claude project. The tool runs CALIBRATE through HAND OFF, surfaces preconditions as questions, builds files, runs the integrity check, hands you the deployment commands.</p>
     </div>
 
     <div class="stages">
       <div class="stage">
         <div class="stage-num">stage_01</div>
         <h3>CALIBRATE</h3>
-        <p>Reads brief. Surfaces preconditions as questions. <strong>Mandatory, not skippable.</strong> STOPS until operator answers.</p>
+        <p>Reads brief. Surfaces preconditions as questions. <strong>Mandatory, not skippable.</strong> STOPS until you answer.</p>
       </div>
       <div class="stage">
         <div class="stage-num">stage_02</div>
         <h3>PLAN</h3>
-        <p>Surfaces closest analog, folder tree, key patterns. You sign off or redirect. No files written yet.</p>
+        <p>Surfaces folder tree, key patterns, visual identity proposal for the landing page. You sign off or redirect. No files written yet.</p>
       </div>
       <div class="stage">
         <div class="stage-num">stage_03</div>
         <h3>BUILD</h3>
-        <p>Produces files. Cites source repos and research reports. Ships <code>docs/index.html</code>.</p>
+        <p>Produces the specialist files + the landing page <code>docs/index.html</code>. Ships citations and source-grounded references.</p>
       </div>
       <div class="stage">
         <div class="stage-num">stage_04</div>
         <h3>VERIFY</h3>
-        <p>Runs 13-row ICM checklist. Pages self-contained discipline check. Reports pass/fail per row.</p>
+        <p>Runs the 13-row checklist. Pages self-contained discipline check. Visual differentiation check vs. recent builds. Reports pass/fail per row.</p>
       </div>
       <div class="stage">
         <div class="stage-num">stage_05</div>
         <h3>HAND OFF</h3>
-        <p>Outputs <code>gh</code> CLI deployment commands. Updates STATUS. Appends upstream breadcrumb. Worker doesn't deploy by default.</p>
+        <p>Outputs <code>gh</code> CLI deployment commands. Updates STATUS. Worker doesn't deploy by default — you authorize per build.</p>
       </div>
     </div>
   </section>
 
   <section class="wrap wide" id="flair">
     <div class="section-header">
-      <span class="eyebrow">what makes this not a clone</span>
-      <h2>Three flair axes Arjen and Virgilio don't have.</h2>
-      <p class="lede">Specialist Foundry sits in the empty slot between Arjen's developer-grade chat-prompt and Virgilio's non-technical wizard. Operator-grade buyer; durable artifacts; integrity as a feature.</p>
+      <span class="eyebrow">what makes it ours</span>
+      <h2>Three disciplines that show up in every build.</h2>
+      <p class="lede">Beyond the workflow, three things are baked into how every specialist gets built.</p>
     </div>
 
     <div class="flair">
@@ -665,95 +829,28 @@
         <div class="axis-num">axis_01</div>
         <h3>Audit-trail dispatch</h3>
         <p>Every build has a brief file at <code>briefs/&lt;date&gt;-&lt;slug&gt;.md</code>, optional question files surfacing preconditions, and a STATUS update afterward.</p>
-        <p class="note">Read a year-old build's brief + question file + STATUS and reconstruct what was decided and why. Chat-prompt and wizard dispatches are ephemeral. Foundry's is durable.</p>
+        <p class="note">Read a year-old build's brief + question file + STATUS and reconstruct what was decided and why. Durable, not ephemeral.</p>
       </div>
       <div class="flair-card">
         <div class="axis-num">axis_02</div>
         <h3>Pages-by-default</h3>
-        <p>Every Foundry-built specialist ships with a self-contained <code>docs/index.html</code> — inline CSS, no external dependencies, with its own visual identity.</p>
-        <p class="note">Push the repo + enable Pages from <code>/docs</code> → public URL at <code>&lt;username&gt;.github.io/&lt;slug&gt;/</code> in 60 seconds. Distinct aesthetic per build is refusal-grade discipline — no template clones.</p>
+        <p>Every specialist ships with a self-contained <code>docs/index.html</code> — inline CSS, no external dependencies, with its own visual identity tuned to the domain.</p>
+        <p class="note">Push the repo + enable Pages from <code>/docs</code> → public URL at <code>&lt;username&gt;.github.io/&lt;slug&gt;/</code> in 60 seconds. Distinct aesthetic per build is refusal-grade — no template clones.</p>
       </div>
       <div class="flair-card">
         <div class="axis-num">axis_03</div>
-        <h3>Integrity-guardrails</h3>
-        <p>Refuses to manufacture unlabeled testimonials, refuses high-harm domains (medical / legal-licensed / suicide-intervention), enforces empty-region rules.</p>
-        <p class="note">If you want fictional testimonials before cold-test, Foundry insists on inline <code>(illustrative composite, fictional)</code> labels. Tested on a bereavement-product build where this actually mattered.</p>
+        <h3>Integrity guardrails</h3>
+        <p>Refuses to manufacture unlabeled testimonials, refuses high-harm domains (medical / legal-licensed / suicide intervention), enforces empty-region rules.</p>
+        <p class="note">If you want fictional testimonials before cold-test, every fictional name carries <code>(illustrative composite, fictional)</code> inline. End-users of your specialist are entitled to honesty.</p>
       </div>
     </div>
-
-    <div class="section-header">
-      <span class="eyebrow">vs. the cousins</span>
-      <h2>What you're actually trading off.</h2>
-      <p class="lede">Arjen and Virgilio are excellent; they serve different buyers. Pick the one that fits.</p>
-    </div>
-
-    <table class="comparison">
-      <thead>
-        <tr>
-          <th>axis</th>
-          <th class="us">specialist_foundry</th>
-          <th>arjen.specialist_builder</th>
-          <th>virgilio.icm_workspace_builder</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>dispatch</td>
-          <td class="us">brief_file_in <code>briefs/</code></td>
-          <td>chat_prompt (single line)</td>
-          <td>wizard_ux (archetype + guided Qs)</td>
-        </tr>
-        <tr>
-          <td>output_medium</td>
-          <td class="us">pre_built_folder_on_disk</td>
-          <td>inline_markdown_blocks</td>
-          <td>downloadable_zip</td>
-        </tr>
-        <tr>
-          <td>pages_landing_page</td>
-          <td class="us"><span class="yes">[ yes ]</span> self_contained <code>docs/index.html</code> + distinct visual identity per build</td>
-          <td><span class="no">[ — ]</span></td>
-          <td><span class="no">[ — ]</span></td>
-        </tr>
-        <tr>
-          <td>audit_trail</td>
-          <td class="us"><span class="yes">[ yes ]</span> brief + question_files + STATUS</td>
-          <td><span class="no">chat_ephemeral</span></td>
-          <td><span class="no">wizard_ephemeral</span></td>
-        </tr>
-        <tr>
-          <td>integrity_guardrails</td>
-          <td class="us"><span class="yes">[ yes ]</span> 3 explicit gates</td>
-          <td>high_harm_domain only</td>
-          <td>archetype_gated</td>
-        </tr>
-        <tr>
-          <td>workflow_stages</td>
-          <td class="us">5 named (CALIBRATE → HAND OFF)</td>
-          <td>5 named (same — foundry lifted)</td>
-          <td>archetype_driven</td>
-        </tr>
-        <tr>
-          <td>time_to_ship_target</td>
-          <td class="us">~30 min, brief-depth driven</td>
-          <td>10 min, one chat</td>
-          <td>interactive, similar</td>
-        </tr>
-        <tr>
-          <td>buyer_fit</td>
-          <td class="us">operator_grade (solo / agency / internal_tools)</td>
-          <td>developer (folder-comfortable)</td>
-          <td>non_technical (archetype-picker)</td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 
   <section class="wrap" id="sample">
     <div class="section-header">
       <span class="eyebrow">sample dispatch</span>
-      <h2>What a real first-cousin build looked like.</h2>
-      <p class="lede">The Online Funeral Family Compass (<a href="https://github.com/NFTYoginis/online-funeral-family-compass">repo</a> · <a href="https://nftyoginis.github.io/online-funeral-family-compass/">live</a>) was built on the architecture this Foundry codifies. Below is the abbreviated dispatch trace.</p>
+      <h2>What a real build dispatch looks like.</h2>
+      <p class="lede">The Online Funeral Family Compass (<a href="https://nftyoginis.github.io/online-funeral-family-compass/">live</a>) was the first real build. Below is the abbreviated dispatch trace, from brief in to live URL out.</p>
     </div>
 
     <div class="sample">
@@ -763,32 +860,31 @@
 
         <div class="stage-block">
           <span class="stage-tag">CALIBRATE</span>
-          <p>Brief defers three preconditions to operator: buyer (bereaved family / platform staff / death-tech founder), domain layers (which of 8 candidates + geographic scope), grading bar (structurally-valid / domain-accurate / usable).</p>
+          <p>Brief defers three preconditions: buyer shape (bereaved family / platform staff / death-tech founder), domain layers (which of 8 candidates + geographic scope), grading bar (structurally-valid / domain-accurate / usable).</p>
           <p>Filing <code>briefs/questions/2026-05-12-online-funeral-industry-specialist-question.md</code> with all three in one round-trip. <strong>STOPPING.</strong></p>
         </div>
 
         <div class="stage-block">
           <span class="stage-tag">PLAN</span>
-          <p>Operator answered: (a) bereaved family · 4–6 of 8 layers, US-seeded with hub-extensibility · all 3 grading bars.</p>
-          <p>Closest analog: Grief Admin Compass (4-column triage shape lifted). Slug: <code>online-funeral-family-compass</code>. 6 of 8 layers picked, US-only with <code>reference/_template-country/</code> scaffold for extension. Empty-country handler lifted from Realtor Copilot v2's empty-region rule. 5 refusal gates drafted. Folder tree surfaced; operator confirmed.</p>
+          <p>Operator answered: bereaved family · 4–6 of 8 layers, US-seeded with hub-extensibility · all 3 grading bars.</p>
+          <p>Slug: <code>online-funeral-family-compass</code>. 6 of 8 layers picked, US-only with <code>reference/_template-country/</code> scaffold for future countries. Empty-country handler in rules.md. 5 refusal gates drafted. Visual identity proposed: <code>bereavement_grade</code> (warm white + sage + Georgia serif). Folder tree surfaced; operator confirmed.</p>
         </div>
 
         <div class="stage-block">
           <span class="stage-tag">BUILD</span>
-          <p>14 files produced under <code>builds/online-funeral-family-compass/</code>. WebFetch budget: 9 calls (3 succeeded — Funeral Consumers Alliance, USA.gov death certificate, Grief Admin Compass examples via raw GitHub; 6 failed 403/404 — fallback to stable public-knowledge URLs cited inline).</p>
+          <p>14 files produced under <code>builds/online-funeral-family-compass/</code>. Domain content cited from public regulatory sources (FTC Funeral Rule, USA.gov death certificate process, Funeral Consumers Alliance, NFDA, state codes). Landing page rendered in the proposed aesthetic.</p>
         </div>
 
         <div class="stage-block">
           <span class="stage-tag">VERIFY</span>
-          <p>13/13 ICM checklist passed. Pages self-contained check: <code>grep</code> returns only repo URL + issues URL. No external asset fetches.</p>
+          <p>13/13 checklist passed. Pages self-contained check: only repo URL + issues URL, no external asset fetches. Visual identity differentiated from any previous build (this was the first).</p>
         </div>
 
         <div class="stage-block">
           <span class="stage-tag">HAND OFF</span>
-          <p>Deployment commands output. Operator authorized push mid-session (per-build override). Pushed to <code>github.com/NFTYoginis/online-funeral-family-compass</code>; Pages enabled from <code>/docs</code>; live at <code>nftyoginis.github.io/online-funeral-family-compass/</code> within 60 seconds. STATUS.md updated. HQ breadcrumb appended.</p>
+          <p>Deployment commands output. Operator authorized push; worker pushed to <code>github.com/NFTYoginis/online-funeral-family-compass</code>; Pages enabled from <code>/docs</code>; live at <code>nftyoginis.github.io/online-funeral-family-compass/</code> within 60 seconds. STATUS.md updated.</p>
           <ul>
-            <li>Mid-session operator override #1 (deploy authorized): logged.</li>
-            <li>Mid-session operator override #2 (sales-page expansion with illustrative testimonials): logged. Integrity-guardrail held — every fictional name labeled <code>(illustrative composite, fictional)</code> inline.</li>
+            <li>Mid-dispatch operator override (sales-page expansion with illustrative testimonials): logged. Integrity-guardrail held — every fictional name labeled <code>(illustrative composite, fictional)</code> inline.</li>
           </ul>
         </div>
       </div>
@@ -799,24 +895,24 @@
     <div class="section-header">
       <span class="eyebrow">who'd use this</span>
       <h2>Illustrative scenarios from the design phase.</h2>
-      <p class="lede">Specialist Foundry is pre-launch beyond its first cousin (the funeral compass). Scenarios below are <strong>illustrative composites drafted during the design phase</strong>. Names and details are fictional. Real testimonials will replace this block after cold-test with external operators.</p>
+      <p class="lede">This tool is pre-launch beyond its first real build. Scenarios below are <strong>illustrative composites drafted during the design phase</strong>. Names and details are fictional. Real testimonials will replace this block after cold-test with external operators.</p>
     </div>
 
     <div class="illustrative">
       <h3>composite_01 — solo founder shipping a b2b saas toolkit</h3>
-      <p>"I ship 3–4 new Claude specialists per quarter for different product areas — onboarding, churn-analysis, sales-call review, feature-discovery. I need an audit trail per specialist because I forget what I was thinking three months ago, and I need Pages-by-default because my marketing site links to each one. Arjen's chat-prompt was too ephemeral; Virgilio's wizard didn't fit my workflow. Foundry's brief-file dispatch is what I actually want."</p>
+      <p>"I ship 3–4 new Claude specialists per quarter for different product areas — onboarding, churn-analysis, sales-call review, feature-discovery. I need an audit trail per specialist because I forget what I was thinking three months ago, and I need landing pages by default because my marketing site links to each one. This is what I actually want."</p>
       <p class="attribution">— Adrian R., solo founder, B2B SaaS <em>(illustrative composite, fictional)</em></p>
     </div>
 
     <div class="illustrative">
       <h3>composite_02 — agency partner running specialist builds for clients</h3>
-      <p>"My agency ships ~12 specialists a year across client domains. The integrity-guardrails matter because half our clients want to over-promise on testimonials — Foundry's hard 'no' on unlabeled fake proof is what I needed in writing. The brief-file pattern also gives me something to put in front of the client at start, instead of 'trust me on the scope.'"</p>
+      <p>"My agency ships ~12 specialists a year across client domains. The integrity-guardrails matter because half our clients want to over-promise on testimonials — the hard 'no' on unlabeled fake proof is what I needed in writing. The brief-file pattern also gives me something to put in front of the client at start, instead of 'trust me on the scope.'"</p>
       <p class="attribution">— Priya N., agency partner, design/strategy consultancy <em>(illustrative composite, fictional)</em></p>
     </div>
 
     <div class="illustrative">
       <h3>composite_03 — internal-tools developer at a 60-person startup</h3>
-      <p>"I build 1–2 internal specialists per month for different teams (sales-ops, customer-success, product). The 5-stage workflow is overkill for some of them, but the CALIBRATE-is-mandatory rule has saved me from at least three rebuilds caused by missing scope. The Pages output also lets non-technical PMs review specialists before launch — they can just open a URL."</p>
+      <p>"I build 1–2 internal specialists per month for different teams (sales-ops, customer-success, product). The CALIBRATE-is-mandatory rule has saved me from at least three rebuilds caused by missing scope. The landing page output also lets non-technical PMs review specialists before launch — they can just open a URL."</p>
       <p class="attribution">— Marcus L., internal-tools lead, mid-stage startup <em>(illustrative composite, fictional)</em></p>
     </div>
 
@@ -840,7 +936,7 @@
       </div>
       <div class="step">
         <h3>Create a new Claude Project</h3>
-        <p>Go to <code>claude.ai/projects</code>, click New Project, name it "Specialist Foundry."</p>
+        <p>Go to <code>claude.ai/projects</code>, click New Project, name it whatever you like — "AI Specialist Workshop," "Build Bench," your call.</p>
       </div>
       <div class="step">
         <h3>Upload as Project Knowledge</h3>
@@ -848,15 +944,15 @@
       </div>
       <div class="step">
         <h3>Set up your working folder</h3>
-        <p>Create a working folder somewhere on disk with two sub-folders: <code>briefs/</code> and <code>builds/</code>. Foundry writes to both.</p>
+        <p>Create a working folder somewhere on disk with two sub-folders: <code>briefs/</code> and <code>builds/</code>. Both get written to during dispatches.</p>
         <pre>mkdir -p ~/my-specialists/briefs ~/my-specialists/builds</pre>
       </div>
       <div class="step">
         <h3>Write your first brief and dispatch</h3>
         <p>Write a brief into <code>briefs/&lt;date&gt;-&lt;slug&gt;.md</code> describing the specialist you want built (target buyer, domain, output shape, scope limits). The brief template is in this repo's <code>examples.md</code>.</p>
-        <p>Then paste this verbatim into your Claude project chat:</p>
-        <pre>Read the brief at briefs/&lt;filename&gt; and dispatch through the five Foundry stages.</pre>
-        <p>Foundry runs CALIBRATE → PLAN → BUILD → VERIFY → HAND OFF.</p>
+        <p>Then paste this into your Claude project chat:</p>
+        <pre>Read the brief at briefs/&lt;filename&gt; and dispatch through the five stages.</pre>
+        <p>The tool runs CALIBRATE → PLAN → BUILD → VERIFY → HAND OFF.</p>
       </div>
     </div>
   </section>
@@ -868,81 +964,57 @@
     </div>
 
     <details class="faq">
+      <summary>What exactly does this produce?</summary>
+      <p>A folder of markdown files (the AI specialist's <code>identity.md</code> / <code>rules.md</code> / <code>examples.md</code> / <code>reference/</code>) plus a single self-contained <code>docs/index.html</code> landing page. You upload the markdown to a Claude Project to activate the specialist; you push the repo + enable Pages to make the landing page live. End-to-end: brief in, working AI specialist + public landing page out.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Why does each landing page look visually different?</summary>
+      <p>"Landing page included" is only a real differentiator if each one looks like its own artifact — not a template clone. Every build proposes a distinct visual identity at PLAN stage (palette, type system, density, components, hero treatment), tuned to the specialist's domain. Same template wearing different paint fails the verify check and gets rebuilt.</p>
+      <p>This page uses an operator-tooling aesthetic (dark slate + monospace section labels + terminal hero) because it serves builders. The funeral compass uses a bereavement-grade aesthetic (warm white + sage + Georgia serif) because its domain calls for dignity, not promotional warmth.</p>
+    </details>
+
+    <details class="faq">
       <summary>Why brief-file dispatch instead of a chat prompt?</summary>
       <p>The brief file is the audit trail. Without it, your dispatch is ephemeral — when the chat closes, you can't reconstruct what you decided or why. A year from now, you can read the brief + the question file + the STATUS line and rebuild context in 90 seconds. This matters when you ship more than one specialist or work on a team.</p>
-      <p>Arjen's Specialist Builder uses a chat prompt and is 10 minutes per specialist — faster, less ceremony, ideal for one-off builds by a developer comfortable with the inline-markdown output. Foundry is slower (~30 min) and adds the audit-trail overhead deliberately.</p>
-    </details>
-
-    <details class="faq">
-      <summary>What's the actual difference from Arjen's Specialist Builder?</summary>
-      <ul>
-        <li><strong>Dispatch:</strong> brief file (durable) vs. chat prompt (ephemeral)</li>
-        <li><strong>Output:</strong> pre-built folder on disk (you don't copy-paste) vs. inline markdown code blocks</li>
-        <li><strong>Pages-ready landing page:</strong> always shipped (<code>docs/index.html</code>) vs. not included</li>
-        <li><strong>Integrity-guardrails:</strong> three explicit gates (launch-layer, high-harm-domain, unlabeled-fake-proof) vs. high-harm-domain only</li>
-        <li><strong>Workflow stages:</strong> same 5 names (lifted from Arjen — credit given in this repo's README and acknowledgments)</li>
-      </ul>
-      <p>If you're a developer who wants one specialist fast and you're comfortable copy-pasting markdown, Arjen's is the better fit. If you ship multiple specialists, want Pages-by-default, and care about the audit trail, Foundry's is.</p>
-    </details>
-
-    <details class="faq">
-      <summary>What's the actual difference from Virgilio's ICM Workspace Builder?</summary>
-      <ul>
-        <li><strong>UX:</strong> brief file (technical) vs. wizard with archetype selection (friendly for non-technical)</li>
-        <li><strong>Architecture layers:</strong> ICM-canonical 5 + Pages-by-default vs. 6-layer system (Virgilio's adds CLAUDE.md, CONTEXT.md, stage contracts, <code>_config/</code>, <code>output/</code>, optional skill-starters)</li>
-        <li><strong>Output medium:</strong> pre-built folder vs. downloadable .zip</li>
-        <li><strong>Buyer:</strong> operator-grade (technically comfortable) vs. non-technical archetype-picker</li>
-      </ul>
-      <p>Virgilio's architecture is materially richer than Foundry's. If you want CONTEXT.md + stage contracts in your output, Virgilio's is the better fit. Foundry kept the ICM-canonical 5 deliberately to stay close to the source repos and minimize per-build setup time.</p>
-    </details>
-
-    <details class="faq">
-      <summary>Why does each Foundry-built page look visually different?</summary>
-      <p>"Pages-by-default" is a real flair only if each built specialist looks like its own artifact, not a template clone. The pattern doc <code>reference/patterns/pages-by-default.md</code> requires that every build propose a distinct visual identity at PLAN stage — palette, type system, density, components, hero treatment. Same template wearing different paint fails VERIFY.</p>
-      <p>This page uses an operator-tooling aesthetic (dark slate + monospace section labels + sharp corners) because Foundry is itself a tool. The funeral compass uses a bereavement-grade aesthetic (warm white + sage accent + serif headlines + spacious layout) because its domain calls for dignity, not promotional warmth. Both ship under the same Foundry discipline.</p>
-    </details>
-
-    <details class="faq">
-      <summary>Can I fork this and use a different workflow / different gates?</summary>
-      <p>Yes — MIT-licensed. The architecture is meant to fork. If your fork makes substantial workflow or gate changes, please rename it ("Specialist Foundry — Acme Edition" / "Compliance Foundry" / whatever) so the upstream lineage stays clear.</p>
-      <p>If you build something that should go upstream, file a PR. The two refusal gates that <strong>don't</strong> bend are unlabeled-fake-proof and high-harm-domain — these are integrity gates, not features. Forks that strip them lose the lineage; that's your call, but I won't merge it back.</p>
     </details>
 
     <details class="faq">
       <summary>What if my brief is for a high-harm domain (medical, legal, suicide)?</summary>
-      <p>Foundry refuses at CALIBRATE and points you to certified professionals:</p>
+      <p>The tool refuses at CALIBRATE and points you to certified professionals:</p>
       <ul>
         <li>Medical diagnosis → licensed physicians; for second opinions, Cleveland Clinic Express Care, Teladoc, or your insurer's nurse line</li>
         <li>Legal advice in licensed jurisdictions → an attorney licensed in the relevant state/country; your state or country bar association has a referral line</li>
         <li>Suicide intervention → 988 Suicide and Crisis Lifeline (US, call or text 988); for other countries, International Association for Suicide Prevention</li>
       </ul>
-      <p>Adjacent domains (medical TRIAGE for non-emergencies, legal admin, grief admin) are in scope — see the Online Funeral Family Compass for the bereavement adjacent case.</p>
+      <p>Adjacent domains (medical triage for non-emergencies, legal admin where the rules are public and stable, grief admin for the bereaved) are in scope — see the Online Funeral Family Compass for the bereavement-adjacent case.</p>
     </details>
 
     <details class="faq">
       <summary>Do I have to use GitHub Pages?</summary>
-      <p>No — the <code>docs/index.html</code> file is self-contained and works via <code>file://</code> protocol. You can email it, archive it, host it on Netlify, or just keep it for local preview. But Pages is the path of least resistance: push the repo, enable Pages, public URL in 60 seconds.</p>
+      <p>No — the <code>docs/index.html</code> file is self-contained and works via <code>file://</code> protocol. You can email it, archive it, host it on Netlify, or just keep it for local preview. Pages is the path of least resistance: push the repo, enable Pages, public URL in 60 seconds.</p>
     </details>
 
     <details class="faq">
       <summary>Why insist on labeled-illustrative testimonials? Can't I just use real ones?</summary>
-      <p>Yes, if they're real. The refusal is on <strong>unlabeled fictional ones</strong>. Real testimonials with provenance are always preferred — operator supplies them, attributes accurately, the person has consented. Foundry doesn't second-guess provenance.</p>
-      <p>The labeled-illustrative discipline exists for the pre-launch period, when you don't have real testimonials yet and you want the landing page to communicate scenarios anyway. Inline labels keep that honest.</p>
+      <p>Yes, if they're real. The refusal is on <strong>unlabeled fictional ones</strong>. Real testimonials with provenance are always preferred — you supply them, attribute accurately, the person has consented.</p>
+      <p>The labeled-illustrative discipline exists for the pre-launch period, when you don't have real testimonials yet and you want the landing page to communicate scenarios anyway. Inline labels keep that honest. The end-user of your specialist is entitled to know what's real and what isn't.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Can I fork this and change the workflow / gates?</summary>
+      <p>Yes — MIT-licensed. The architecture is meant to fork. If your fork makes substantial workflow or gate changes, please rename it so the upstream lineage stays clear.</p>
+      <p>The two refusal gates that <strong>don't</strong> bend are unlabeled-fake-proof and high-harm-domain — these are integrity gates, not features. Forks that strip them lose the lineage; that's your call, but I won't merge it back.</p>
     </details>
 
     <details class="faq">
       <summary>What does it cost?</summary>
-      <p>The Foundry itself is free, MIT-licensed. The cost is your Claude subscription (free tier exists; paid tier varies). There is no third-party SaaS, no API key, no recurring fee added by this Foundry. Each Foundry-built specialist is also MIT-licensed unless your brief specifies otherwise.</p>
+      <p>This tool is free, MIT-licensed. The cost is your Claude subscription (free tier exists; paid tier varies). There is no third-party SaaS, no API key, no recurring fee. Each specialist you build with it is also MIT-licensed unless your brief specifies otherwise.</p>
     </details>
 
     <details class="faq">
-      <summary>How is this related to Realtor Copilot v2 and the Grief Admin Compass?</summary>
-      <p>Both of those are <strong>built specialists</strong>, not meta-builders. They are example outputs of the architecture Foundry codifies. Realtor Copilot v2's empty-region rule and Pages-ready landing page pattern were lifted into Foundry's defaults. Grief Admin Compass's 4-column triage shape and admin-first voice informed how the first Foundry build (the Online Funeral Family Compass) was structured. Acknowledgment to both at the bottom of this Foundry's README.</p>
-    </details>
-
-    <details class="faq">
-      <summary>I built something with Specialist Foundry. How do I list it back?</summary>
-      <p><a href="https://github.com/NFTYoginis/specialist-foundry/issues">Open an issue</a> with the repo URL + a one-line description. Specialists built with Foundry get listed in this repo's README. The cousin lineage matters and we keep it visible.</p>
+      <summary>I built something with this. How do I list it back?</summary>
+      <p><a href="https://github.com/NFTYoginis/specialist-foundry/issues">Open an issue</a> with your repo URL + a one-line description. Specialists built with the tool get listed in this repo's README.</p>
     </details>
   </section>
 
@@ -951,12 +1023,11 @@
 <footer>
   <div class="foot-inner">
     <div>
-      // <strong>specialist-foundry</strong> v1.1 · 2026-05-12<br>
+      // <strong>gabe — your_ai_specialist</strong> v1.2 · 2026-05-12<br>
       mit_licensed · free_to_use_modify_distribute · forks_welcome
     </div>
     <div>
-      <a href="https://github.com/NFTYoginis/specialist-foundry">$ view_on_github</a> &nbsp;·&nbsp;
-      <a href="https://github.com/NFTYoginis/online-funeral-family-compass">$ first_cousin</a>
+      <a href="https://github.com/NFTYoginis/specialist-foundry">$ view_on_github</a>
     </div>
   </div>
 </footer>
