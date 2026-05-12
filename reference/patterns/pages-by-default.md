@@ -20,30 +20,98 @@ Modeled on Realtor Copilot v2's `docs/index.html` template (validated live at [n
 | 8 | FAQ | Recommended | 5-10 questions in `<details>` elements. Pulls from rules.md "what you don't do" + brief's known objections. |
 | 9 | Footer | Yes | License (MIT line), GitHub link, attribution if any, last-updated date. |
 
-## Visual defaults
+## Visual identity per build (refusal-grade discipline)
 
-Inherited from Realtor Copilot v2's palette unless brief specifies otherwise:
+**Every Foundry-built specialist's `docs/index.html` must have a distinct visual identity.** Not "same template, different palette" — genuinely different look and feel, so the operator's specialist catalogue doesn't read as one production wearing slightly different paint.
 
-```css
-:root {
-  --bg: #faf8f3;          /* cream */
-  --surface: #ffffff;
-  --ink: #1a1a1a;
-  --muted: #5b5b5b;
-  --rule: #e6e2d8;
-  --accent: #b5731a;      /* warm amber - default */
-  --accent-soft: #fdf3e2;
-  --code-bg: #f5f1e8;
-}
+This is a refusal-grade discipline. A built specialist whose landing page is visually indistinguishable from another Foundry-built specialist fails VERIFY and gets rebuilt.
+
+### Why this discipline exists
+
+Pages-by-default is a real flair only if every built specialist looks like its own artifact. If three Foundry specialists all share the same cream palette + system sans + sticky-nav + rounded-card components, the "Pages-by-default" claim becomes weak — operators correctly read it as "yes you get a landing page but it's a template."
+
+Tested 2026-05-12: the first two Foundry-built specialists (the online-funeral-family-compass and Specialist Foundry itself) shipped with visually-near-identical pages. Operator caught it immediately. Discipline added to prevent recurrence.
+
+### Axes that MUST vary per build
+
+At PLAN stage, propose distinct choices on every axis:
+
+| Axis | Range to span across builds |
+| --- | --- |
+| **Color palette** | Light cream / warm white / pale sage / dark slate / monochrome / etc. — pick what fits the domain personality |
+| **Accent color** | Amber / sage green / dusty rose / deep teal / muted plum / etc. — distinct from the previous two builds at minimum |
+| **Typography hierarchy** | All-sans / serif-headlines-sans-body / mono-labels-sans-body / serif-throughout — mix appropriate to the domain |
+| **Layout density** | Spacious (taller margins, line-height 1.7+, narrow max-width ~720px) / Standard (1.55 line-height, ~880px) / Dense (tighter margins, line-height 1.4, wide max-width 1100px+) |
+| **Component personality** | Rounded soft cards with shadows / sharp corners with hairline borders / no borders just dividers / heavy-bordered |
+| **Hero treatment** | Centered classic / split-screen / full-bleed gradient / code-block-styled / asymmetric |
+| **Section ornamentation** | Pill-tagline + eyebrow + h2 / minimal text only / decorative dividers / numbered sections |
+
+### Axes that MUST NOT vary (the discipline floor)
+
+| Axis | Why it can't vary |
+| --- | --- |
+| **Self-contained discipline** | No external CSS/JS/font/image fetches. Verified by `grep -E "https?://" docs/index.html`. |
+| **9 canonical sections in order** | Head + sticky nav + hero + what-it-does + sample output + proof block + setup + FAQ + footer. Structural, not stylistic. |
+| **Labeled-illustrative discipline** | Every fictional name carries `(illustrative composite, fictional)` inline. Refusal gate. |
+| **Anchor-link integrity** | Every `href="#x"` has a matching `id="x"`. Mechanical. |
+| **Font sourcing** | System fonts only OR base64-inlined fonts. NO Google Fonts, NO CDN, NO external font requests. |
+
+### Worked aesthetic identities (canonical examples)
+
+**Bereavement / grief / hospice / palliative care:**
+- Warm white background (`#fdfaf6` or lighter), pure white surfaces
+- Serif headlines (Georgia stack), sans body — adds dignity
+- Sage green (`#8aa085`) or muted dusty rose accent — life-affirming, not promotional
+- Minimal borders, no shadows, soft hairline dividers
+- Spacious layout (line-height 1.7, narrow max-width ~760px)
+- Hero: centered, smaller, more breath
+- Validated: `online-funeral-family-compass/docs/index.html` v1.1+
+
+**Operator tooling / developer-grade / technical-trade:**
+- Dark slate background (`#0f1419`), warm off-white text (`#e8e0d4`)
+- Monospace section labels + nav + stage tags (`ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`)
+- Warm amber accent (`#d4943c`) for contrast against dark
+- Sharp corners (4px), hairline borders (`1px solid var(--rule)`), no soft shadows
+- Dense layout (wider container, tighter vertical rhythm)
+- Hero: code-block-styled framing for the dispatch example
+- Validated: `specialist-foundry/docs/index.html` v1.1+
+
+**Realtor / sales tooling / market-facing professional:**
+- Warm cream background (`#faf8f3`), white surfaces — Realtor Copilot v2's canonical
+- All-sans system stack, larger headlines
+- Warm amber accent (`#b5731a`)
+- Rounded cards (12px), soft shadows, backdrop-blur on nav
+- Standard density (line-height 1.55, max-width 880-1100px)
+- Hero: centered with pill-tagline
+- Validated: Realtor Copilot v2's existing `docs/index.html` (the original template the others diverged from)
+
+These three are starting points, NOT a closed set. Brief at PLAN stage should propose a fourth, fifth, sixth aesthetic for new domains — financial, creative, education, hospitality, etc.
+
+### What to do at PLAN stage
+
+For every build, propose visual identity choices alongside the folder tree:
+
+```
+### Visual identity for docs/index.html
+- Palette: [warm white / dark slate / pale sage / etc.]
+- Headlines: [system sans / Georgia serif / monospace]
+- Body: [system sans (default) / serif for long-form]
+- Section labels: [eyebrow uppercase / monospace / small caps]
+- Accent: [#hex code — distinct from previous 2 builds]
+- Components: [rounded soft / sharp hairline / borderless dividers]
+- Layout density: [spacious / standard / dense]
+- Hero treatment: [centered classic / code-block / split / asymmetric]
+- Justification: [why this aesthetic fits the domain personality]
 ```
 
-**Per-domain palette adjustment:**
-- **Bereavement / health / grief:** cooler accent (`#8a6a3d` rather than `#b5731a`). Less promotional warmth.
-- **Financial / regulatory:** more reserved palette (less accent, more rule lines).
-- **Creative / education:** can lean toward Realtor Copilot v2's warmer default.
-- **Brief-specified brand colors:** override defaults.
+Operator can confirm or override. NEVER ship a build where this section wasn't explicitly considered.
 
-Always: system font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif`). No Google Fonts, no web fonts, no external font requests.
+### What VERIFY checks (stage 4)
+
+In addition to the 13-row ICM checklist, VERIFY for any build after the first now includes:
+
+- **Visual differentiation check** — compare the proposed `docs/index.html` palette + type + components against the most recent 2 Foundry-built specialists. If any of (palette family, type system, component personality) match closely, flag for rework.
+- This is a judgment check, not mechanical. Foundry surfaces the comparison and operator confirms differentiation is sufficient.
 
 ## Self-contained discipline (enforced by VERIFY)
 
