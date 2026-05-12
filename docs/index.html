@@ -179,6 +179,32 @@
     margin: 0 0 32px;
     max-width: 640px;
   }
+  .honest-receipt {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    padding: 14px 18px;
+    margin: 4px 0 28px;
+    max-width: 660px;
+  }
+  .honest-receipt .receipt-label {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .honest-receipt p {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+  }
+
   .cta-row {
     display: flex;
     gap: 12px;
@@ -712,6 +738,10 @@
         <div class="tagline">landing pages for your ai tools</div>
         <h1>Distinct landing page for every AI specialist you ship.</h1>
         <p class="sub">Brief in. AI specialist + its own self-contained landing page out. Each one gets its own visual identity — no template clones. About 30 minutes from brief to live URL. MIT-licensed, free, no install.</p>
+        <div class="honest-receipt">
+          <span class="receipt-label">// honest receipt</span>
+          <p>One specialist has been shipped externally to date — the Online Funeral Family Compass (linked below) — plus this page itself, both produced by the same architecture. Cold-test with operators outside the author is the next validation step. Read this as a demonstrated pass, not yet a repeatable production line.</p>
+        </div>
         <div class="cta-row">
           <a class="btn primary" href="#produces">$ see_what_it_produces</a>
           <a class="btn secondary" href="#setup">$ set_up</a>
@@ -1023,7 +1053,7 @@
 <footer>
   <div class="foot-inner">
     <div>
-      // <strong>gabe — your_ai_specialist</strong> v1.2 · 2026-05-12<br>
+      // <strong>gabe — your_ai_specialist</strong> v1.3 · 2026-05-12<br>
       mit_licensed · free_to_use_modify_distribute · forks_welcome
     </div>
     <div>
