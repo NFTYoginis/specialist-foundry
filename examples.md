@@ -6,9 +6,9 @@ The first example is the **actual first build** that validated Foundry's archite
 
 ---
 
-## Example 1 — Online Funeral Family Compass (real first cousin, 2026-05-12)
+## Example 1 — Funeral Aftercare Compass (real first cousin, 2026-05-12)
 
-**Operator** *(brief at [`briefs/2026-05-12-online-funeral-industry-specialist.md`](https://github.com/NFTYoginis/online-funeral-family-compass) — the actual file in the parent worker)*:
+**Operator** *(brief at [`briefs/2026-05-12-online-funeral-industry-specialist.md`](https://github.com/NFTYoginis/funeral-aftercare-compass) — the actual file in the parent worker)*:
 
 > Build an ICM specialist for the online funeral industry, modeled on the structural shape of Grief Admin Compass. Three preconditions need answers before building.
 
@@ -37,7 +37,7 @@ Surfacing all three in `briefs/questions/2026-05-12-online-funeral-industry-spec
 - **Closest analog:** Grief Admin Compass (source-repos.md row 2) — direct lift on 4-column triage shape, admin-first voice, refusal gates around legal/medical/grief-counseling.
 - **Slug:** `online-funeral-family-compass` (buyer-aware, echoes analog, distinct from estate-admin cousin)
 - **Domain layers (6 of 8 candidates):** direct-cremation-vs-traditional, FTC Funeral Rule, memorial-platform conventions, virtual memorial service, online death certificate, cross-jurisdictional decedent affairs
-- **Geographic scope:** US-seeded with `reference/<country>/` extensibility (hub serves any country; empty-country handler refuses non-populated with pointer). Pattern lifted from Realtor Copilot v2 empty-region rule, generalized.
+- **Geographic scope:** US-seeded with `reference/<country>/` extensibility (hub serves any country; empty-country handler refuses non-populated with pointer). Pattern lifted from Your Market Realtor empty-region rule, generalized.
 - **Refusal gates (5):** legal advice, medical advice, grief counseling, specific funeral home pricing, out-of-US queries
 - **Output shape:** 4-column `TODAY → THIS WEEK → MONTH 1 → DON'T-DO-YET` (verbatim from Grief Admin Compass)
 - **Folder structure:**
@@ -112,7 +112,7 @@ STATUS.md updated. HQ breadcrumb appended.
 
 *(operator authorized push mid-session: "go ahead and push it" — override of the default-no-deploy rule)*
 
-**Foundry pushed.** Live at https://nftyoginis.github.io/online-funeral-family-compass/. v1.0 shipped.
+**Foundry pushed.** Live at https://nftyoginis.github.io/funeral-aftercare-compass/. v1.0 shipped.
 
 *(operator then asked for sales-page expansion with illustrative testimonials — override of no-manufactured-social-proof rule, with integrity guardrail: every fictional name labeled `(illustrative composite, fictional)` inline. Pattern flag saved for future builds.)*
 

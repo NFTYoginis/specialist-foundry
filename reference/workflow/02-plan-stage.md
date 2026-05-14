@@ -7,7 +7,7 @@
 1. **Identify the closest analog repo** from the source-repos catalogue. State which and why.
 2. **Propose folder + file tree** in conversation, not as files yet.
 3. **State key patterns being applied** with citations:
-   - "Empty-region rule lifted in shape from Realtor Copilot v2 `specialist/rules.md:57-63`, generalized as empty-country handling."
+   - "Empty-region rule lifted in shape from Your Market Realtor `specialist/rules.md:57-63`, generalized as empty-country handling."
    - "4-column triage shape lifted verbatim from Grief Admin Compass."
    - "5-stage workflow naming lifted from Arjen's Specialist Builder."
 4. **List open questions if any** — file-level questions that don't justify a question file but need operator input (slug choice, scope-boundary detail, etc.)

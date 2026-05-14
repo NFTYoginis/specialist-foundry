@@ -40,7 +40,7 @@ When refusing a launch-layer request:
 
 Some asks sit on the boundary. Judgment calls:
 
-- **A second HTML file in `docs/`** (e.g., `docs/pricing.html` or `docs/cold-test-brief.md`) — IF brief explicitly authorizes AND the file lives within the same Pages-served repo, it can be in scope. Realtor Copilot v2 has this pattern (multiple files under `docs/`). Default-no, opt-in.
+- **A second HTML file in `docs/`** (e.g., `docs/pricing.html` or `docs/cold-test-brief.md`) — IF brief explicitly authorizes AND the file lives within the same Pages-served repo, it can be in scope. Your Market Realtor has this pattern (multiple files under `docs/`). Default-no, opt-in.
 - **A README badge or shield** (e.g., MIT license badge, build status) — in scope, single-line addition
 - **A `CONTRIBUTING.md` file** — in scope for any public repo, brief shouldn't need to authorize explicitly
 - **An OG image** (the social-media share preview) — out of scope by default (requires generating an image); can be requested but flag as a different shape of work

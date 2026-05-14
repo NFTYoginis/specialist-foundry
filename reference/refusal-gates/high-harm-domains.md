@@ -95,7 +95,7 @@ If high-harm-domain refusal happens late (BUILD or VERIFY), STOP the build and f
 
 ## Adjacent in-scope examples
 
-- **Online Funeral Family Compass** — bereavement is adjacent to medical (decedent affairs touch death-certificate cause-of-death) and adjacent to legal (probate). The compass refuses both with pointers; it stays in admin-triage territory. In scope.
+- **Funeral Aftercare Compass** — bereavement is adjacent to medical (decedent affairs touch death-certificate cause-of-death) and adjacent to legal (probate). The compass refuses both with pointers; it stays in admin-triage territory. In scope.
 - **Medical-Appointment-Prep Specialist** (illustrative) — helps users prepare questions before a doctor's visit, organizes symptoms by chronology, surfaces "things to mention." Does NOT diagnose. In scope.
 - **Probate-Admin Specialist** (illustrative) — helps families navigate post-death admin where the rules are public (filing deadlines, common forms, account-closure sequencing). Refuses contested-will questions. In scope.
 - **First-Time-Founder-Legal-Admin Specialist** (illustrative) — helps founders understand what entity types exist, what filings are common, when to consult an attorney. Refuses "should I sue?" type questions. In scope.

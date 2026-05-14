@@ -6,7 +6,7 @@ Neither Arjen's Specialist Builder nor Virgilio's ICM Workspace Builder produces
 
 ## The 9 canonical sections (in order)
 
-Modeled on Realtor Copilot v2's `docs/index.html` template (validated live at [nftyoginis.github.io/realtor-copilot-v2/](https://nftyoginis.github.io/realtor-copilot-v2/)).
+Modeled on Your Market Realtor's `docs/index.html` template (validated live at [nftyoginis.github.io/your-market-realtor/](https://nftyoginis.github.io/your-market-realtor/)).
 
 | # | Section | Required | What Foundry generates |
 | - | --- | --- | --- |
@@ -77,13 +77,13 @@ At PLAN stage, propose distinct choices on every axis:
 - Validated: `specialist-foundry/docs/index.html` v1.1+
 
 **Realtor / sales tooling / market-facing professional:**
-- Warm cream background (`#faf8f3`), white surfaces — Realtor Copilot v2's canonical
+- Warm cream background (`#faf8f3`), white surfaces — Your Market Realtor's canonical
 - All-sans system stack, larger headlines
 - Warm amber accent (`#b5731a`)
 - Rounded cards (12px), soft shadows, backdrop-blur on nav
 - Standard density (line-height 1.55, max-width 880-1100px)
 - Hero: centered with pill-tagline
-- Validated: Realtor Copilot v2's existing `docs/index.html` (the original template the others diverged from)
+- Validated: Your Market Realtor's existing `docs/index.html` (the original template the others diverged from)
 
 These three are starting points, NOT a closed set. Brief at PLAN stage should propose a fourth, fifth, sixth aesthetic for new domains — financial, creative, education, hospitality, etc.
 
@@ -164,7 +164,7 @@ The Pages-by-default page is one file. Anything beyond that is launch-layer.
 
 ## Worked example — the funeral compass
 
-The Online Funeral Family Compass's `docs/index.html` ([live](https://nftyoginis.github.io/online-funeral-family-compass/)):
+The Funeral Aftercare Compass's `docs/index.html` ([live](https://nftyoginis.github.io/funeral-aftercare-compass/)):
 
 - ~750 lines of single self-contained HTML
 - Warm cream background, cooler accent (`#8a6a3d`) for bereavement appropriateness

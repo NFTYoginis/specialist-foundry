@@ -22,14 +22,14 @@ During every dispatch:
 
 A specialist built by Specialist Foundry inherits citation discipline. When that specialist's `rules.md` cites a pattern (e.g., the empty-region rule), it should cite back to both:
 
-1. The original source (e.g., Realtor Copilot v2's `specialist/rules.md:57-63`)
+1. The original source (e.g., Your Market Realtor's `specialist/rules.md:57-63`)
 2. The Foundry pattern file (e.g., `reference/patterns/region-extensible-scaffold.md`)
 
 Two-level citation: where the pattern came from, AND where Foundry codified it. This is how the architecture stays inspectable across forks.
 
 ## Companion catalogue
 
-For the source-repo catalogue (the 11 Skool-competition reference repos + Realtor Copilot v2), Foundry points to `~/Documents/specialist-builder/reference/source-repos.md` in its parent worker's repo. Forking that catalogue into Specialist Foundry's own repo is a deliberate non-choice — the catalogue belongs to the operator's research layer, not to the Foundry's architectural layer. Forks of Specialist Foundry can maintain their own catalogue or point upstream.
+For the source-repo catalogue (the 11 Skool-competition reference repos + Your Market Realtor), Foundry points to `~/Documents/specialist-builder/reference/source-repos.md` in its parent worker's repo. Forking that catalogue into Specialist Foundry's own repo is a deliberate non-choice — the catalogue belongs to the operator's research layer, not to the Foundry's architectural layer. Forks of Specialist Foundry can maintain their own catalogue or point upstream.
 
 ---
 

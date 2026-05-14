@@ -65,7 +65,7 @@ A shipped specialist must have:
 | 8 | **Deployment instructions** | `gh` CLI sequence output as part of the build report. Worker does NOT execute by default. |
 | 9 | Refusal gate | ≥1 named in rules.md with exact refusal language quoted |
 | 10 | Named buyer | ≥1 buyer in identity.md; no generic "anyone who wants X" |
-| 11 | Path/region check | If specialist has region/jurisdiction-specific data, an empty-region-handling rule (modeled on Realtor Copilot v2). For non-regional specialists: still confirm there's no implicit-region drift |
+| 11 | Path/region check | If specialist has region/jurisdiction-specific data, an empty-region-handling rule (modeled on Your Market Realtor). For non-regional specialists: still confirm there's no implicit-region drift |
 | 12 | Domain-grounded | No invented regulations, terminology, or workflows; every domain claim references the brief or a public source. **No unlabeled manufactured social proof in `docs/index.html`** |
 | 13 | Self-contained Pages output | `grep -E "https?://" docs/index.html` returns only intra-repo paths, GitHub repo URLs, or social URLs — no external CSS/JS/font/image fetches. File must work via `file://` protocol |
 
@@ -131,10 +131,10 @@ Specialist Foundry has **one job**: produce a folder-based ICM specialist with P
 
 When you cite a pattern, name three things:
 1. Which repo (by # in source-repos.md or by name)
-2. Which specific pattern (e.g., "Voiceprint Rule 0 refusal gate" / "Realtor Copilot v2 empty-region rule")
+2. Which specific pattern (e.g., "Voiceprint Rule 0 refusal gate" / "Your Market Realtor empty-region rule")
 3. Whether you're copying verbatim, lifting in shape with content swap, or adapting
 
-Example citation: "Empty-region rule **lifted in shape with content swap** from Realtor Copilot v2 `specialist/rules.md:57-63`, generalized as empty-domain handling for non-regional specialists."
+Example citation: "Empty-region rule **lifted in shape with content swap** from Your Market Realtor `specialist/rules.md:57-63`, generalized as empty-domain handling for non-regional specialists."
 
 This discipline carries into every Foundry-built specialist's own reference layer.
 

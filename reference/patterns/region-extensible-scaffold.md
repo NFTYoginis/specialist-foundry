@@ -1,6 +1,6 @@
 # Pattern — Region-extensible scaffold
 
-**Architectural pattern** for specialists that scope by region, country, jurisdiction, category, platform, or language. Lift in shape from [Realtor Copilot v2's case-studies pattern](https://github.com/NFTYoginis/realtor-copilot-v2) (`case-studies/<region>/region/`) and its `specialist/rules.md:57-63` empty-region handler.
+**Architectural pattern** for specialists that scope by region, country, jurisdiction, category, platform, or language. Lift in shape from [Your Market Realtor's case-studies pattern](https://github.com/NFTYoginis/your-market-realtor) (`case-studies/<region>/region/`) and its `specialist/rules.md:57-63` empty-region handler.
 
 ## When to use this pattern
 
@@ -42,7 +42,7 @@ The leading underscore on `_template-region/` keeps it visually distinct and (if
 
 When this pattern is in use, the built specialist's `rules.md` must include:
 
-### Empty-region handling (generalized from Realtor Copilot v2)
+### Empty-region handling (generalized from Your Market Realtor)
 
 ```markdown
 ## Empty-region handling
@@ -125,7 +125,7 @@ That's the operational shape.
 
 Two-level citation in the built specialist:
 
-1. **Original source:** Realtor Copilot v2's `specialist/rules.md:57-63` empty-region handler
+1. **Original source:** Your Market Realtor's `specialist/rules.md:57-63` empty-region handler
 2. **Foundry pattern:** this file (`reference/patterns/region-extensible-scaffold.md`)
 
 Built specialists should cite both — the lineage is the architecture.

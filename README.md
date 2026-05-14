@@ -153,9 +153,9 @@ Built side-by-side with:
 - [Arjen's Specialist Builder](https://github.com/astetic-dev/specialist-builder) — workflow naming (CALIBRATE / CONFIRM / BUILD / SELF-REVIEW / HAND OFF) and high-harm-domain refusal gate lifted from this work.
 - [Virgilio's ICM Workspace Builder](https://workflowcreate.netlify.app) — architectural cousin; their 6-layer system informed the workflow/patterns/refusal-gates substructure.
 - [Grief Admin Compass](https://github.com/astetic-dev/grief-admin-compass) — the 4-column triage shape and admin-first voice we used to validate Foundry's first build.
-- [Realtor Copilot v2](https://github.com/NFTYoginis/realtor-copilot-v2) — the empty-region pattern we generalized into Foundry's integrity-guardrail framework, and the Pages-by-default visual template.
+- [Your Market Realtor](https://github.com/NFTYoginis/your-market-realtor) — the empty-region pattern we generalized into Foundry's integrity-guardrail framework, and the Pages-by-default visual template.
 
-The first specialist built with Specialist Foundry's architecture is the [Online Funeral Family Compass](https://github.com/NFTYoginis/online-funeral-family-compass) ([live](https://nftyoginis.github.io/online-funeral-family-compass/)) — built 2026-05-12 on the architecture this Foundry now codifies.
+The first specialist built with Specialist Foundry's architecture is the [Funeral Aftercare Compass](https://github.com/NFTYoginis/funeral-aftercare-compass) ([live](https://nftyoginis.github.io/funeral-aftercare-compass/)) — built 2026-05-12 on the architecture this Foundry now codifies.
 
 ## Status
 

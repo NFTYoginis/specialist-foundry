@@ -8,7 +8,7 @@
 2. **Batch file writes in parallel where possible.** Independent files (e.g., 6 reference layer files in different sub-folders) can be written in a single tool-call message with multiple `Write` invocations.
 3. **Use code-based scaffolding for repetitive structures.** If building 4 case-study folders with the same 6-file shape, write a small Bash script that generates the structure rather than authoring 24 files manually. The script lives alongside the build for reproducibility.
 4. **Cite source repos and research reports** in every file that lifts a pattern. Two-level citation: (1) where the pattern came from originally, (2) which Foundry pattern file codifies it.
-5. **Ship `docs/index.html`** — not optional. Model on Realtor Copilot v2's structural template but adapt visual palette to the brief's domain (e.g., the funeral compass uses a slightly cooler accent than Realtor Copilot v2's amber, for bereavement appropriateness).
+5. **Ship `docs/index.html`** — not optional. Model on Your Market Realtor's structural template but adapt visual palette to the brief's domain (e.g., the funeral compass uses a slightly cooler accent than Your Market Realtor's amber, for bereavement appropriateness).
 6. **Verify cross-file consistency before announcing BUILD complete.** If `rules.md` references `reference/us/02-ftc-funeral-rule.md`, that file must exist.
 
 ## File-writing order
@@ -28,7 +28,7 @@ There's no fixed order, but a reasonable default:
 When writing a file that lifts a pattern, the file should contain:
 
 ```markdown
-This pattern is **lifted in shape with content swap** from [Realtor Copilot v2's `specialist/rules.md:57-63`](https://github.com/NFTYoginis/realtor-copilot-v2), codified in Foundry's [`reference/patterns/region-extensible-scaffold.md`](../patterns/region-extensible-scaffold.md).
+This pattern is **lifted in shape with content swap** from [Your Market Realtor's `specialist/rules.md:57-63`](https://github.com/NFTYoginis/your-market-realtor), codified in Foundry's [`reference/patterns/region-extensible-scaffold.md`](../patterns/region-extensible-scaffold.md).
 ```
 
 Three things named: source, what was lifted, where Foundry codified it.
@@ -41,7 +41,7 @@ Three things named: source, what was lifted, where Foundry codified it.
 
 ## Voice discipline during BUILD
 
-The voice every Foundry-built specialist uses internally is the same voice the [Online Funeral Family Compass](https://github.com/NFTYoginis/online-funeral-family-compass) uses externally:
+The voice every Foundry-built specialist uses internally is the same voice the [Funeral Aftercare Compass](https://github.com/NFTYoginis/funeral-aftercare-compass) uses externally:
 
 > Calm. Practical. Direct. No platitudes after the first acknowledgment.
 

@@ -21,7 +21,7 @@ The label is **inline** — visible at the same time the quote is read. Not a fo
 
 **Why it matters:** Built specialists distributed under Foundry's discipline are public-facing, MIT-licensed artifacts. End-users (often in high-trust or vulnerable states — bereaved families, patients, financial decision-makers) read the landing page and reasonably assume testimonials are real. Unlabeled fake testimonials are deception toward a vulnerable audience.
 
-**Where the rule was tested:** Online Funeral Family Compass (2026-05-12). Operator authorized "make up fake examples if you ever need" — Foundry's predecessor (specialist-builder worker) honored the authorization but applied the labeled-illustrative discipline as a structural integrity gate. Operator confirmed this was the right call.
+**Where the rule was tested:** Funeral Aftercare Compass (2026-05-12). Operator authorized "make up fake examples if you ever need" — Foundry's predecessor (specialist-builder worker) honored the authorization but applied the labeled-illustrative discipline as a structural integrity gate. Operator confirmed this was the right call.
 
 ### 2. Refusal-with-pointer
 
@@ -39,7 +39,7 @@ The pointer should be **specific** (a profession, an institution, a phone number
 
 **Rule:** If a built specialist's reference layer is regionally or domainally scoped (e.g., US-only at first ship, with `_template-country/` scaffold for extensibility), the specialist must refuse non-populated regions/domains with a pointer — never silently produce wrong-scope output.
 
-**Pattern lifted from Realtor Copilot v2's** `specialist/rules.md:57-63`:
+**Pattern lifted from Your Market Realtor's** `specialist/rules.md:57-63`:
 
 ```markdown
 ## Empty-region handling
@@ -53,7 +53,7 @@ If `reference/region/*.md` files still contain `[PLACEHOLDER]` markers:
 
 **Generalized for Foundry:** Replace "region" with whatever axis the specialist scopes — country, jurisdiction, category, platform, language. Pattern is the same.
 
-**Worked example:** Online Funeral Family Compass's empty-country handler:
+**Worked example:** Funeral Aftercare Compass's empty-country handler:
 
 > This compass is currently US-seeded only. Funeral law, vital-records processes, online-service availability, and consumer-rights protections differ materially outside the United States, and I won't guess.
 >
