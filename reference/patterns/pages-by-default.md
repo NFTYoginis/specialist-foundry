@@ -162,6 +162,66 @@ If brief asks for:
 
 The Pages-by-default page is one file. Anything beyond that is launch-layer.
 
+## OG-image brief (codified 2026-05-15)
+
+Pages-by-default is now a **three-artifact** discipline, not a one-file discipline:
+
+1. **`docs/index.html`** — the self-contained landing page (the one this whole doc is about)
+2. **OG / Twitter Card meta tags inside `docs/index.html`** — pointing to `docs/og-image.png` (absolute Pages URL). These ship even before the PNG exists; social shares fall back to text-only previews until the PNG lands. Required tags: `og:title`, `og:description`, `og:type`, `og:url`, `og:image`, `og:image:width` (1200), `og:image:height` (630), `og:image:alt`, `twitter:card` (summary_large_image), `twitter:title`, `twitter:description`, `twitter:image`.
+3. **`briefs/og-images/<YYYY-MM-DD>-<repo-slug>-og-image.md`** — a design brief operator forwards to a design-team worker; the design team delivers the PNG; operator drops it in at `docs/og-image.png` and pushes.
+
+### What the OG-image brief contains
+
+Self-contained for a design team that has no build context. Paste-ready. Includes:
+
+- **2-sentence product description** (the design team doesn't read the build's identity.md)
+- **Visual identity table** — exact hex codes extracted from the live `docs/index.html` palette, type stack, density, corner-radius, accent-usage rules. The OG image must read as a natural extract of the live page, not a separate brand.
+- **Composition diagram** (ASCII layout or written description) — what goes where
+- **Visual hook** — the one distinctive thing the product leads with at OG-thumbnail scale (e.g., verdict trichotomy / four-column triage / dispatch architecture diagram / four-populated-markets row / terminal-prompt block)
+- **No-go list** — refusal-grade (no testimonials, no competitor names, no stock photography, no emojis, no external fonts, no AI badges, no Anthropic/Claude logos)
+- **Output specs** — 1200×630 PNG, sRGB, edge-to-edge background, ≤1MB ideally, exact deliver path
+- **Design-team self-check list** — thumbnail legibility, exact dimensions, accent restraint, no-go-list compliance, file format
+
+### Filing template
+
+Look at any brief in `~/Documents/specialist-builder/briefs/og-images/` (sample of 8 by 2026-05-15). Each follows the same shape.
+
+### Drop-in flow when the PNG lands
+
+```bash
+cp <delivered>.png /Users/gabe/Documents/<repo>/docs/og-image.png
+cd /Users/gabe/Documents/<repo>
+git add docs/og-image.png
+git commit -m "Add OG image (1200×630)"
+git push origin main
+# Pages caches in ~30–60s; verify HTTP 200 on the og-image.png URL
+```
+
+### VERIFY check (stage 4)
+
+VERIFY confirms the OG-image brief exists at the expected path. Without it the build is not done — the brief is the operator's audit trail for the dispatch.
+
+### Why the meta-tags-first sequence
+
+Sampled at n=8 deployed NFTYoginis/ repos by 2026-05-14, the meta-tags-first sequence means a build's social-share preview either renders correctly with a brand-distinct image (post-PNG) or falls back to text-only (pre-PNG). It never renders with a *missing* or *generic-default* OG image. Briefs are operator-owned audit trail; meta tags are graceful-degradation; the PNG is the proper completion. Same discipline, three layers.
+
+### Visual-identity-per-build extends to OG images
+
+The OG image inherits the build's visual identity. The 8 OG images shipped through 2026-05-14:
+
+| Build | OG identity (extract of live page) |
+| --- | --- |
+| funeral-aftercare-compass | bereavement-warm-sage (cream + sage + Georgia serif + 4-column triage hook) |
+| specialist-foundry | operator-tooling-terminal (slate + amber + monospace + [READY] pill hook) |
+| laundromat-deal-screener | acquisition-ledger-teal (off-white + ink + teal + verdict-trichotomy pills hook) |
+| your-market-realtor | warm-cream-amber (cream + amber + soft cards + 4-populated-markets row hook) |
+| agency-of-one | studio-blueprint (paper + drafting-blue + faint grid + dispatch-architecture-diagram hook) |
+| your-content-worker | editorial-essay-rust-serif (paper + ink + rust + serif + dispatch-trigger-inset hook) |
+| your-design-worker | swatch-specimen-warm-coral *(PNG pending)* |
+| your-animation-worker | post-production-console *(PNG pending)* |
+
+Each is structurally distinct in palette + type + density + components — same discipline as the docs/index.html visual-identity-per-build rule.
+
 ## Worked example — the funeral compass
 
 The Funeral Aftercare Compass's `docs/index.html` ([live](https://nftyoginis.github.io/funeral-aftercare-compass/)):
@@ -178,4 +238,4 @@ That's the operational shape.
 
 ---
 
-Last updated: 2026-05-12.
+Last updated: 2026-05-15 (codified OG-image brief as the 3rd Pages-by-default artifact; added visual-identity-per-build OG-image roster at n=8).

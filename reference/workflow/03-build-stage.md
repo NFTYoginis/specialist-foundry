@@ -66,9 +66,28 @@ This is structural, not stylistic. The operator-grade buyer has read enough mark
 4. Open via `file://` protocol cleanly
 5. Use the warm-cream palette by default (override per brief's domain — bereavement = slightly cooler accent; financial = slightly more reserved palette)
 6. Hit all 9 canonical sections in order: head + sticky nav + hero + what-it-does + sample output + proof block + setup + FAQ + footer
+7. **Include OG / Twitter Card meta tags** pointing to `docs/og-image.png` (an absolute Pages URL). These ship even before the PNG exists — until the PNG lands, social shares fall back to text-only previews. Required tags: `og:title`, `og:description`, `og:type`, `og:url`, `og:image`, `og:image:width` (1200), `og:image:height` (630), `og:image:alt`, `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description`, `twitter:image`.
 
 See `reference/patterns/pages-by-default.md` for the full template.
 
+## OG-image design brief — also written during BUILD
+
+Alongside `docs/index.html`, BUILD also produces an OG-image design brief at `briefs/og-images/<YYYY-MM-DD>-<repo-slug>-og-image.md`. This brief is forwarded by operator to a design-team worker; the design team delivers the PNG; operator drops it in at `docs/og-image.png` and pushes.
+
+The brief includes (paste-ready for design team — they have no build context):
+
+- 2-sentence product description
+- Visual identity table extracted from the live `docs/index.html` (exact hex codes, type stack, density, accent-usage rules)
+- Composition diagram (ASCII layout or written description)
+- Visual hook — the one distinctive thing the OG image leads with (e.g., verdict trichotomy / four-column triage / dispatch architecture diagram / 4-populated-markets cards)
+- No-go list (no testimonials, no competitor names, no stock photography, no emojis, no external fonts, no AI badges)
+- Output specs (1200×630 PNG, sRGB, edge-to-edge background, ≤1MB, deliver path)
+- Design-team self-check list (thumbnail legibility, exact dimensions, accent restraint, no-go compliance)
+
+Looking at any existing brief in `~/Documents/specialist-builder/briefs/og-images/` is the canonical template. Pattern fully spec'd in `reference/patterns/pages-by-default.md` §OG-image-brief.
+
+VERIFY (stage 4) checks that the brief file exists alongside the build. Without it, the build is not done.
+
 ---
 
-Last updated: 2026-05-12.
+Last updated: 2026-05-15 (added OG meta tags to Pages-by-default requirement #7; added OG-image-design-brief as standard BUILD output).
